@@ -1,0 +1,11 @@
+.wrapper {
+  min-height: 400px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  h1 {
+    color: white;
+  }
+}
