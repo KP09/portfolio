@@ -3,3 +3,4 @@ class Participation < ApplicationRecord
   belongs_to :project
   has_one :contribution
 end
+
