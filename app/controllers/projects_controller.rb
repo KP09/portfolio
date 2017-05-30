@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @current_user = current_user
   end
 
   def create
