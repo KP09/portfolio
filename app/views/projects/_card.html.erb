@@ -11,9 +11,14 @@
       <%= image_tag ("avitar.jpg"), class: "avatar" %>
     </div>
 
+    <div class="full_name">
+      <% full_name = "#{project.user.first_name} #{project.user.last_name}"%>
+      <p><%= full_name %></p>
+    </div>
+
     <div class="project_information">
       <h1><%= project.title %></h1>
-      <p><%= project.user.email %></p>
+      <hr width="20%">
       <div class="brief">
         <% if project.brief.length > 100 then %>
           <p><%= project.brief[0...100] %>...</p>

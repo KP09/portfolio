@@ -1,6 +1,7 @@
 .card_border {
   border-radius: 10px;
   box-shadow: 0px 0px 33px 1px rgba(204,204,204,0.55);
+  margin: 10px;
 }
 
 .card_border:hover {
@@ -22,7 +23,10 @@
   h1 {
     font-size: 25px;
   }
+  hr {
+    border-color: $brand-color;
   }
+}
 
 
 .creator-avitar {
@@ -63,7 +67,21 @@
 
 .brief {
   height: 55px;
+  width: 100%;
   p {
     font-size: 12px;
   }
+}
+
+.full_name {
+  position: absolute;
+  top: 15px;
+  right: 50px;
+  p{
+    font-size: 12px;
+  }
+}
+
+.project_information {
+  margin-top: 20px;
 }
