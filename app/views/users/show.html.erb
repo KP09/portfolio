@@ -1,10 +1,10 @@
 <!-- Profile banner -->
-<div class="wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
+<div class="profile-wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
            url('<%= cl_image_path ('banner_2_ieaj1g')%>')">
   <div class="container">
     <div class="profile-picture">
       <img class="avatar-large" src="images/kees.jpg" alt="">
-      <h2>Kees Postma</h2>
+      <h1><%= @user.first_name %> <%= @user.last_name %></h1>
     </div>
 
     <div class="profile-stats">
@@ -15,17 +15,16 @@
   </div>
 </div>
 
-
 <div class="container">
   <div class="row">
 
     <div class="col-lg-4">
-      <div class="card">
-        <div class="card-header">
+      <div class="">
+        <div class="">
           <h3>About</h3>
         </div>
 
-        <div class="card-content">
+        <div class="">
           <h4>Bio</h4>
           <p>Pro sailor, amateur web developer. Currently studying at Le Wagon coding bootcamp in London</p>
           <h4>Work</h4>
@@ -50,28 +49,28 @@
     </div>
 
     <div class="col-lg-7">
-    <div class="card">
-      <div class="card-header">
+    <div class="">
+      <div class="">
         <h3>Contributions feed</h3>
       </div>
 
-      <div class="card-content">
-        <div class="contribution-container">
-          <div class="contribution-details">
+      <div class="">
+        <div class="">
+          <div class="">
             <h4>Awesome business concept</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip...</p>
           </div>
         </div>
 
-        <div class="contribution-container">
-          <div class="contribution-details">
+        <div class="">
+          <div class="">
             <h4>Yet another great idea...</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip...</p>
           </div>
         </div>
 
-        <div class="contribution-container">
-          <div class="contribution-details">
+        <div class="">
+          <div class="">
             <h4>And another one!</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip...</p>
           </div>
