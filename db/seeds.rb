@@ -42,7 +42,7 @@ end
 
 # Create developer users
 kees = User.create!(email: "kk.postma@gmail.com", password: "123456", first_name: "Kees", last_name: "Postma", bio: "Le Wagon Student")
-rami = User.create!(email: "rbakri@gmail.com", password: "123456", first_name: "Rami", last_name: "Bakri", bio: "Le Wagon Student")
+rami = User.create!(email: "rbakri1@gmail.com", password: "123456", first_name: "Rami", last_name: "Bakri", bio: "Le Wagon Student")
 james = User.create!(email: "james@hewines.com", password: "123456", first_name: "James", last_name: "Block", bio: "Le Wagon Student")
 
 2.times do
