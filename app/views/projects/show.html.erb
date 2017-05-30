@@ -1,43 +1,40 @@
-<h1>Project.title</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
-
-
 <!-- PROJECT CREATOR INFORMATION -->
-<div class="profile-box">
+<div class="content-box">
 	<div class="user-information"> 
 		<!-- AVATAR IMAGE OF USER -->
 		<div class="avatar">
 		<!-- <img src="project.user.photo" alt="user" class="avatar"> NEED TO PUT CLOUDINARY IN PLACE FIRST -->
 		</div>
 		<!-- USERS NAME AND BIO ABOUT THEMSELVES -->
-		<p><%= project.user.first_name %> <%= project.user.last_name %></p>
-		<p><%= project.user.bio %></p>
+		<p><%= @project.user.first_name %> <%= @project.user.last_name %></p>
+		<p><%= @project.user.bio %></p>
   </div>
 	<div class="delete">
-		<% if project.user == @current_user %>
-		  <a href="/projects" class="btn-primary">Delete project</a>
+		<% if @project.user == @current_user %>
+		  <a href="/projects" class="btn-primary" onclick="return confirm('Are you sure?')">Delete project</a>
 		<% end %>
-		<!-- MAKE THIS A BOOTSTRAP BUTTON -->
-		<!-- IF USER CREATED PROJECT, THEY SEE DELETE OPTION WHICH WILL DESTROY THE PROJECT (THEY NEED TO CONFIRM) -->
 	</div>
-
-
 </div>
 
-<!-- SHOW THE PROJECT
+<!-- SHOW THE PROJECT -->
 
 <div class="center-box"> 
-	<h1 class="title"><%= project.title %> </h1>
-	<p class="details"><%= project.brief %></p>
-	<p class=""><%= project.end_date %></p>
+	<h1 class="title"><%= @project.title %> </h1>
+	<p class="details"><%= @project.brief %></p>
+	<p class=""><%= @project.end_date %></p>
+	<% if @current_user.participations.pluck(:project_id).include?(@project.id) %>
+		<a href="" class="btn-primary">Contribute to project</a>
+	<% end %>
 </div>
 
 <!-- PROJECT PARTICIPATERS -->
 
-<div class=" ">
-	
-
-
+<div class="content-box">
+	<!-- <div class="avatar small"> INJECT ERB HERE</div> -->
+	<% @project.participations.users do |user| %>
+		<!-- ADD USER.PHOTO IN AVATAR -->
+		<p><%= user.first_name %><%= user.last_name %></p>
+		<% end %>
 </div>
 
 
