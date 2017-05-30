@@ -5,28 +5,40 @@
 <!-- Card must have a project category -->
 <!-- Card must have remaining days -->
 
-<div class="card">
-  <div class="creator-avitar">
-  </div>
+<div class="card_border">
+  <div class="card">
+    <div class="creator-avitar">
+      <%= image_tag ("avitar.jpg"), class: "avatar" %>
+    </div>
 
-  <div class="project_information">
-    <h1><%= project.title %></h1>
-    <h2><%= project.brief %></h2>
-    <p><%= project.user.email %></p>
-  </div>
-
-  <div class="creator">
+    <div class="project_information">
+      <h1><%= project.title %></h1>
+      <p><%= project.user.email %></p>
+      <div class="brief">
+        <% if project.brief.length > 100 then %>
+          <p><%= project.brief[0...100] %>...</p>
+        <% else %>
+          <p><%= project.brief %></p>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="card_color_divide">
-    <div class="project_remaining_days">
-      <% days_remaining = ((project.end_date) - Time.now).to_i %>
-      <p><%= days_remaining %></p>
-    </div>
-    <div class="project_category">
-      <%= project.category %>
-    </div>
-  </div>
+      <div class="project_remaining_days">
+        <p>3 days remaining</p>
+      </div>
 
+      <div class="right_color_divide">
+        <div class="pill">
+          <p><%= project.max_joins %></p>
+        </div>
+
+        <div class="pill">
+          <p><%= project.category %></p>
+        </div>
+      </div>
+  </div>
+</div>
 
 

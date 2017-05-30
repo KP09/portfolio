@@ -1,12 +1,13 @@
-<h1>All Projects</h1>
+<div class="container">
+  <h1>All Projects</h1>
+  <hr>
 
-<div class="row">
-  <%= @projects.each do |project| %>
-    <div class="col-xs-4">
-      <%= render "card", project: project %>
-    </div>
-  <% end %>
+  <div class="row">
+    <% @projects.each do |project| %>
+      <div class="col-xs-4">
+        <%= render "card", project: project %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-
 
