@@ -10,6 +10,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
+    @current_user = current_user
+    @user_signed_in = user_signed_in?
   end
 
   def new

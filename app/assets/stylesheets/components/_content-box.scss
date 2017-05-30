@@ -1,0 +1,30 @@
+.content-box {
+  background-color: $box-background-color;
+  box-shadow: 4px;
+  border-radius: 4px;
+  border: 1px solid $box-background-color;
+	&:hover {
+	  opacity: 0.9;
+	}
+	.title {
+    color: $gray-base;
+    padding: 15px 0px 5px 0px;
+		font-size: $h1-size;
+	}
+	.details {
+    color: $gray-base;
+    padding: 20px;
+    padding: 5px 0px 5px 0px;
+	}
+  h1 {
+    font-size: 25px;
+  }
+  hr {
+    border-color: $brand-color;
+  }
+}
+
+
+
+
+
