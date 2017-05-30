@@ -7,9 +7,17 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    @project = Project.new
   end
 
   def create
+    @project = Project.new(project_params)
+    @project.user = current_user
+    if @project.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -20,5 +28,10 @@ class ProjectsController < ApplicationController
 
   def destroy
   end
-  
+
+  private
+
+  def project_params
+    params.require(:project).permit(:title, :brief, :category, :end_date, :max_joins)
+  end
 end
