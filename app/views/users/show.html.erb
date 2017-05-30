@@ -1,2 +1,82 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<!-- Profile banner -->
+<div class="wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
+           url('<%= cl_image_path ('banner_2_ieaj1g')%>')">
+  <div class="container">
+    <div class="profile-picture">
+      <img class="avatar-large" src="images/kees.jpg" alt="">
+      <h2>Kees Postma</h2>
+    </div>
+
+    <div class="profile-stats">
+      <div class="stat flex">Contributions<br>8</div>
+      <div class="stat flex">Upvotes<br>24</div>
+      <div class="stat flex">Followers<br>17</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h3>About</h3>
+        </div>
+
+        <div class="card-content">
+          <h4>Bio</h4>
+          <p>Pro sailor, amateur web developer. Currently studying at Le Wagon coding bootcamp in London</p>
+          <h4>Work</h4>
+          <p>Co-founder at Collab.io</p>
+          <h4>Education</h4>
+          <p>Cass Business School</p>
+          <p>Antwerp International School</p>
+          <h4>Links</h4>
+          <ul class="list-inline">
+            <li>
+              <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </li>
+            <li>
+              <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+    <div class="card">
+      <div class="card-header">
+        <h3>Contributions feed</h3>
+      </div>
+
+      <div class="card-content">
+        <div class="contribution-container">
+          <div class="contribution-details">
+            <h4>Awesome business concept</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip...</p>
+          </div>
+        </div>
+
+        <div class="contribution-container">
+          <div class="contribution-details">
+            <h4>Yet another great idea...</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip...</p>
+          </div>
+        </div>
+
+        <div class="contribution-container">
+          <div class="contribution-details">
+            <h4>And another one!</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
