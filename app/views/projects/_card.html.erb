@@ -1,0 +1,54 @@
+<!-- Card must have a project title -->
+<!-- Card must have a creator name -->
+<!-- Card must have a creator avitar -->
+<!-- Card must have a short description -->
+<!-- Card must have a project category -->
+<!-- Card must have remaining days -->
+
+<div class="card_border">
+  <div class="card">
+    <div class="creator-avitar">
+      <%= image_tag ("avitar.jpg"), class: "avatar" %>
+    </div>
+
+    <div class="full_name">
+      <% full_name = "#{project.user.first_name} #{project.user.last_name}"%>
+      <p><%= full_name %></p>
+    </div>
+
+    <div class="project_information">
+      <h1><%= project.title %></h1>
+      <hr width="20%">
+      <div class="brief">
+        <% if project.brief.length > 100 then %>
+          <p><%= project.brief[0...100] %>...</p>
+        <% else %>
+          <p><%= project.brief %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card_color_divide">
+      <div class="project_remaining_days">
+        <p>3 days remaining</p>
+      </div>
+
+      <% if project.max_joins == nil then  %>
+        <div class="pill">
+          <p><%= project.category %></p>
+        </div>
+      <% else %>
+        <div class="right_color_divide">
+        <div class="pill">
+          <p><%= project.max_joins %></p>
+        </div>
+        <div class="pill">
+          <p><%= project.category %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

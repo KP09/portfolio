@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    @projects = Project.all
   end
 
   def show
@@ -29,9 +31,11 @@ class ProjectsController < ApplicationController
   def destroy
   end
 
+
   private
 
   def project_params
     params.require(:project).permit(:title, :brief, :category, :end_date, :max_joins)
   end
+
 end
