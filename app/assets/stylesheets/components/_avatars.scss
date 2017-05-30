@@ -6,6 +6,22 @@
   width: 50px;
   border-radius: 50%;
 }
+
+.avatar-xl {
+  width: 160px;
+  border-radius: 50%;
+  box-shadow: $box-shadow;
+  text-align: center;
+}
+
+.avatar-xl-faded {
+  width: 140px;
+  border-radius: 50%;
+  box-shadow: $box-shadow;
+  text-align: center;
+  opacity: 0.6;
+}
+
 .avatar-bordered {
   width: 30px;
   border-radius: 50%;
