@@ -1,0 +1,32 @@
+<!-- Card must have a project title -->
+<!-- Card must have a creator name -->
+<!-- Card must have a creator avitar -->
+<!-- Card must have a short description -->
+<!-- Card must have a project category -->
+<!-- Card must have remaining days -->
+
+<div class="card">
+  <div class="creator-avitar">
+  </div>
+
+  <div class="project_information">
+    <h1><%= project.title %></h1>
+    <h2><%= project.brief %></h2>
+    <p><%= project.user.email %></p>
+  </div>
+
+  <div class="creator">
+  </div>
+
+  <div class="card_color_divide">
+    <div class="project_remaining_days">
+      <% days_remaining = ((project.end_date) - Time.now).to_i %>
+      <p><%= days_remaining %></p>
+    </div>
+    <div class="project_category">
+      <%= project.category %>
+    </div>
+  </div>
+
+
+
