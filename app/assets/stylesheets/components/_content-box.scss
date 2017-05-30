@@ -6,19 +6,18 @@
 	&:hover {
 	  opacity: 0.9;
 	}
-	.title {
+  .header {
     color: $gray-base;
-    padding: 15px 0px 5px 0px;
-		font-size: $h1-size;
-	}
+    font-size: $h2-size;
+    padding: 0px 0px 5px 0px;
+    &:main {
+     padding: 15px 0px 5px 0px;
+    }
+  }
 	.details {
     color: $gray-base;
-    padding: 20px;
-    padding: 5px 0px 5px 0px;
+    padding: 10px 0px 10px 0px;
 	}
-  h1 {
-    font-size: 25px;
-  }
   hr {
     border-color: $brand-color;
   }

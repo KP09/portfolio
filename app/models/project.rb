@@ -7,5 +7,6 @@ class Project < ApplicationRecord
   validates :brief, presence: true
   validates :category, presence: true
   validates :user_id, presence: true
+
 end
 
