@@ -1,0 +1,31 @@
+.center-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: grey;
+  box-shadow: 4px;
+  border-radius: 4px;
+  border: 1px solid rgba (0, 0, 0, 0.1);
+	:hover {
+	  opacity: 0.1;
+	}
+	.title {
+		top: 10px;
+		flex: 0 0 75%;
+		font-size: $h1-size;
+	}
+	.details {
+    top: 10px;
+    flex: 0 0 75%;
+    // font-size: Standard 'p', we may want to update
+	}
+  .expires {
+  	top: 10px;
+  	flex: 0 1 75%;
+  }
+}
+
+
+
+
+
