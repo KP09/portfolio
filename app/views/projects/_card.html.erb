@@ -29,15 +29,20 @@
         <p>3 days remaining</p>
       </div>
 
-      <div class="right_color_divide">
-        <div class="pill">
-          <p><%= project.max_joins %></p>
-        </div>
-
+      <% if project.max_joins == nil then  %>
         <div class="pill">
           <p><%= project.category %></p>
         </div>
-      </div>
+      <% else %>
+        <div class="right_color_divide">
+        <div class="pill">
+          <p><%= project.max_joins %></p>
+        </div>
+        <div class="pill">
+          <p><%= project.category %></p>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
