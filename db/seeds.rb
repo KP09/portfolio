@@ -40,6 +40,17 @@ def seed_contribution(participation)
   Contribution.create(comment: comment, starred: starred, participation: participation)
 end
 
+# Create developer users
+kees = User.create!(email: "kk.postma@gmail.com", password: "123456", first_name: "Kees", last_name: "Postma", bio: "Le Wagon Student")
+rami = User.create!(email: "rbakri@gmail.com", password: "123456", first_name: "Rami", last_name: "Bakri", bio: "Le Wagon Student")
+james = User.create!(email: "james@hewines.com", password: "123456", first_name: "James", last_name: "Block", bio: "Le Wagon Student")
+
+2.times do
+  seed_project(kees)
+  seed_project(rami)
+  seed_project(james)
+end
+
 # Loop to create Users
 10.times do
   user = seed_user
