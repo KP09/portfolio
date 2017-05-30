@@ -37,7 +37,7 @@ end
 def seed_contribution(participation)
   comment = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur animi repudiandae odio, sit consequuntur non consectetur sint! Expedita enim illum error animi, recusandae delectus facilis voluptas provident voluptatem, debitis dolore?"
   starred = [true, false].sample
-  Contribution.create(comment: comment, starred: starred, participation: participation)
+  Contribution.create!(comment: comment, starred: starred, participation: participation)
 end
 
 # Create developer users
