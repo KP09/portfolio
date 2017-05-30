@@ -4,15 +4,16 @@
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="content-box shadow text-center margin">
-				<div class="user-information"> 
+				<div class="user-information details"> 
 					<!-- AVATAR IMAGE OF USER -->
 					<div class="avatar">
 					<!-- <img src="project.user.photo" alt="user" class="avatar"> NEED TO PUT CLOUDINARY IN PLACE FIRST -->
 					</div>
 					<!-- USERS NAME AND BIO ABOUT THEMSELVES -->
-					<p> Project Creator </p>
+					<p class="header"> Project Creator </p>
 					<p><%= @project.user.first_name %> <%= @project.user.last_name %></p>
-					<p> Bio </p>
+					<hr width="30%">
+					<p class="header"> Bio </p>
 					<p><%= @project.user.bio %></p>
 			  </div>
 				<div class="delete">
@@ -27,7 +28,7 @@
 		<!-- SHOW THE PROJECT -->
 
 		<div class="col-lg-6">
-		 <div class="margin">
+		  <div class="margin">
 				<div class="center-box shadow">
 					<h1 class="title text-center"><%= @project.title %> </h1>
 					<hr width="30%">
@@ -39,29 +40,32 @@
 		        <% days_left = (@project.end_date.to_date - DateTime.now.to_date).to_i %>
 		        <p><%= days_left %> days left</p>
 		      </div>
-			      <% if @project.max_joins == nil then  %>
-			        <div class="pill">
-			          <p><%= project.category %></p>
-			        </div>
-			      <% else %>
-			        <div class="right_color_divide">
-			        <div class="pill">
-			          <p><%= @project.max_joins %></p>
-			        </div>
-			        <div class="pill">
-			          <p><%= @project.category %></p>
-			        </div>
-			      <% end %>
-	    		</div>
-	  	</div>
-		  <div>
-		  <hr width="30%">
-		  <% if @current_user.participations.pluck(:project_id).include?(@project.id) %>
-		  	<a href="" class="btn-primary">Contribute to project</a>
-		  <% end %>
+		      	<div>
+				      <% if @project.max_joins == nil then  %>
+				        <div class="pill">
+				          <p><%= project.category %></p>
+				        </div>
+				      <% else %>
+				      <div class="right_color_divide">
+				        <div class="pill">
+				          <p><%= @project.max_joins %></p>
+				        </div>
+				        <div class="pill">
+				          <p><%= @project.category %></p>
+				        </div>
+				      <% end %>
+	    			</div>
+	  			</div>
+				</div> 	
+			  <div class="text-center">
+				  <% if @current_user.participations.pluck(:project_id).include?(@project.id) %>
+				  	<a href="" class="margin btn btn-primary">Contribute to project</a>
+					<% else %>
+						<a href="" class="margin btn btn-primary">Join project</a>
+				  <% end %>
+				</div>
 			</div>
-		</div> 	
-	</div>
+		</div>
 
 		<!-- PROJECT PARTICIPATERS -->
 
@@ -70,7 +74,7 @@
 		     <!-- <div class="avatar small"> INJECT ERB HERE</div> -->
 		     <% @project.participations.each do |participation| %>
 		          <!-- ADD USER.PHOTO IN AVATAR -->
-		          <p><%= participation.user.first_name %> <%= participation.user.last_name %></p>
+		          <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
 		          <% end %>
       </div>
 		</div>
