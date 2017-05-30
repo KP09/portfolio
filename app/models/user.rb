@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :projects
   has_many :participations
+  has_many :contributions, through: :participations
 end
