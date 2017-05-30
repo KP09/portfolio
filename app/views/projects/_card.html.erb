@@ -1,10 +1,3 @@
-<!-- Card must have a project title -->
-<!-- Card must have a creator name -->
-<!-- Card must have a creator avitar -->
-<!-- Card must have a short description -->
-<!-- Card must have a project category -->
-<!-- Card must have remaining days -->
-
 <div class="card_border">
   <div class="card">
     <div class="creator-avitar">
@@ -17,8 +10,10 @@
     </div>
 
     <div class="project_information">
-      <h1><%= project.title %></h1>
-      <hr width="20%">
+      <div class="title">
+        <h1><%= project.title %></h1>
+      </div>
+      <hr width="30%">
       <div class="brief">
         <% if project.brief.length > 100 then %>
           <p><%= project.brief[0...100] %>...</p>
@@ -31,7 +26,8 @@
 
   <div class="card_color_divide">
       <div class="project_remaining_days">
-        <p>3 days remaining</p>
+        <% days_left = (project.end_date.to_date - DateTime.now.to_date).to_i %>
+        <p><%= days_left %> days left</p>
       </div>
 
       <% if project.max_joins == nil then  %>
