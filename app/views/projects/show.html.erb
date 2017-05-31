@@ -74,12 +74,23 @@
 			<div class="content-box shadow text-center margin">
 				<h1 class="header"> Project joiners </h1>
 		     <!-- <div class="avatar small"> INJECT ERB HERE</div> -->
-		     <% @project.participations.each do |participation| %>
+		      <% @project.participations.each do |participation| %>
 		          <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
-              <%= cl_image_tag participation.user.profile_picture.path, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
-		          <!-- <img src="participation.user.profile_picture" alt=""> -->
-		          <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
-		          <% end %>
+          <div class="flex-contributers">
+            <div class="left">
+              <% if participation.user.profile_picture? %>
+                <%= cl_image_tag participation.user.profile_picture.path, width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
+              <% else %>
+                <%= cl_image_tag 'sample', width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
+              <% end %>
+            </div>
+            <div class="right">
+  		        <!-- <img src="participation.user.profile_picture" alt=""> -->
+  		        <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
+            </div>
+          </div>
+          <br>
+          <% end %>
       </div>
 		</div>
 
