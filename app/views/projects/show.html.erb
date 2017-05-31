@@ -48,7 +48,8 @@
 				      <% else %>
 				      <div class="right_color_divide">
 				        <div class="pill">
-				          <p><%= @project.max_joins %></p>
+                  <% joins_remaining = (@project.max_joins) - (@project.participations.count) %>
+                  <p><%= joins_remaining %></p>
 				        </div>
 				        <div class="pill">
 				          <p><%= @project.category %></p>
@@ -64,7 +65,7 @@
 					  	  <%= f.input :file_cache, as: :hidden %>
 					  	  <%= f.submit "Update contribution to project", class: "margin btn btn-primary" %>
 					  	<% end %>
-					  </div>	
+					  </div>
 				  <% elsif @current_user.participated_to?(@project) %>
 				  	<div>
 					  	<%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
@@ -81,9 +82,9 @@
 			<!-- Add ability for user to make a contribution -->
 			 <% if @current_user.participations.pluck(:project_id).include?(@project.id)  %>
 			<% end %>
-				  
+
 			<div>
-				
+
 			</div>
 		</div>
 
