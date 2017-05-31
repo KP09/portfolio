@@ -40,12 +40,10 @@
       <div class="card-content">
         <% @user.contributions.each do |contribution| %>
           <div class="contribution-container">
-            <div class="contribution-thumbnail">
-              <%= image_tag('http://unsplash.it/120/?random') %>
-            </div>
+            <div class="contribution-thumbnail" style="background-image: url(<%= cl_image_path ('sample') %>)"></div>
             <div class="contribution-details">
               <h4>Awesome business concept</h4>
-              <p><%= contribution.comment %></p>
+              <p><%= contribution.comment.first(200) %>...</p>
             </div>
             <div class="contribution-buttons">
             <% if contribution.file? %>
