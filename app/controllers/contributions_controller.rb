@@ -8,7 +8,7 @@ class ContributionsController < ApplicationController
   	@participation = Participation.find(params[:participation_id])
     @contribution.participation = @participation
   	if @contribution.save
-  	  redirect_to root_path
+  	  redirect_to project_path(@participation.project)
   	else
   	  render :new
   	end
