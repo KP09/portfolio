@@ -1,8 +1,9 @@
 class ParticipationsController < ApplicationController
   def create
-    @current_user = current_user
-    @participation = Participation.new(participation_params)
-    @participation.user_id = current_user.id
+    @project = Project.find(params[:project_id])
+    @participation = Participation.new
+    @participation.project = @project
+    @participation.user = current_user
     if @participation.save
       redirect_to project_path(@participation.project_id)
     else
@@ -16,7 +17,7 @@ class ParticipationsController < ApplicationController
   private
 
   def participation_params
-    params.require(:Participation).permit(:project_id)
+    params.require(:participation).permit(:project_id)
   end
 
 end

@@ -59,9 +59,10 @@
 				</div>
 			  <div class="text-center">
 				  <% if @current_user.participations.pluck(:project_id).include?(@project.id) %>
+				  	<%= link_to "" %>
 				  	<a href="" class="margin btn btn-primary">Contribute to project</a>
 					<% else %>
-						<a href="" class="margin btn btn-primary">Join project</a>
+						<%= link_to "Join project", project_participations_path(@project), class: "margin btn btn-primary", method: :post %>
 				  <% end %>
 				</div>
 			</div>
@@ -71,9 +72,11 @@
 
 		<div class="col-lg-3">
 			<div class="content-box shadow text-center margin">
+				<h1 class="header"> Project joiners </h1>
 		     <!-- <div class="avatar small"> INJECT ERB HERE</div> -->
 		     <% @project.participations.each do |participation| %>
-		          <!-- ADD USER.PHOTO IN AVATAR -->
+		          <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
+		          <img src="participation.user.profile_photo" alt="">
 		          <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
 		          <% end %>
       </div>
