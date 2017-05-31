@@ -58,15 +58,35 @@
 	  			</div>
 				</div>
 			  <div class="text-center">
-				  <% if @current_user.participations.pluck(:project_id).include?(@project.id) %>
-				  	<%= link_to "" %>
-				  	<a href="" class="margin btn btn-primary">Contribute to project</a>
+			  	<% if @current_user.contributed_to?(@project) %>
+			  		<div><%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+					  	  <%= f.input :file %>
+					  	  <%= f.input :file_cache, as: :hidden %>
+					  	  <%= f.submit "Update contribution to project" %>
+					  	<% end %>
+					  </div>	
+				  <% elsif @current_user.participated_to?(@project) %>
+				  	<div>
+					  	<%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+					  	  <%= f.input :file %>
+					  	  <%= f.input :file_cache, as: :hidden %>
+					  	  <%= f.submit "Contribute to project" %>
+					  	<% end %>
+				  	</div>
 					<% else %>
 						<%= link_to "Join project", project_participations_path(@project), class: "margin btn btn-primary", method: :post %>
 				  <% end %>
 				</div>
 			</div>
+			<!-- Add ability for user to make a contribution -->
+			 <% if @current_user.participations.pluck(:project_id).include?(@project.id)  %>
+			<% end %>
+				  
+			<div>
+				
+			</div>
 		</div>
+
 
 		<!-- PROJECT PARTICIPATERS -->
 
