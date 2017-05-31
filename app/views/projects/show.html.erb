@@ -62,7 +62,7 @@
 			  		<div><%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
 					  	  <%= f.input :file %>
 					  	  <%= f.input :file_cache, as: :hidden %>
-					  	  <%= f.submit "Update contribution to project" %>
+					  	  <%= f.submit "Update contribution to project", class: "margin btn btn-primary" %>
 					  	<% end %>
 					  </div>	
 				  <% elsif @current_user.participated_to?(@project) %>
@@ -70,7 +70,7 @@
 					  	<%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
 					  	  <%= f.input :file %>
 					  	  <%= f.input :file_cache, as: :hidden %>
-					  	  <%= f.submit "Contribute to project" %>
+					  	  <%= f.submit "Contribute to project", class: "margin btn btn-primary" %>
 					  	<% end %>
 				  	</div>
 					<% else %>

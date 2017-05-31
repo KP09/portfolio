@@ -9,9 +9,10 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :participations, only: [:create, :destroy]
+    resources :contributions, only: [:index]
   end
 
   resources :participations, only: [] do
-    resources :contributions, only: [:index, :create, :update, :destroy]
+    resources :contributions, only: [:create, :update, :destroy]
   end
 end
