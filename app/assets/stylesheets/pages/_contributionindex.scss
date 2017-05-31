@@ -11,4 +11,13 @@
 .about-contributer {
   display: flex;
   margin: 10px;
+  width: 30vw;
+  align-items: center;
+  img {
+    margin: 10px;
+  }
+}
+
+.column-right {
+  width: 10vw;
 }

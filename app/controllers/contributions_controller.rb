@@ -1,6 +1,7 @@
 class ContributionsController < ApplicationController
   def index
-    @contributions = Project.find(params[:project_id]).contributions
+    @project = Project.find(params[:project_id])
+    @contributions = Project.find(@project.id).contributions
   end
 
   def create
@@ -12,7 +13,6 @@ class ContributionsController < ApplicationController
   	else
   	  render :new
   	end
-
   end
 
   def update
