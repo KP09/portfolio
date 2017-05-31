@@ -11,9 +11,8 @@ class User < ApplicationRecord
 
   # User validations
   validates :email, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :bio, presence: true
+  validates :first_name, presence: true, on: [:update]
+  validates :last_name, presence: true, on: [:update]
 
   # Attachinary associations
   has_attachment :profile_picture
