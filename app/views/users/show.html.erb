@@ -1,7 +1,11 @@
 <div class="container" id="banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
            url('<%= cl_image_path ('banner_2_ieaj1g')%>')">
   <div class="profile-picture">
-    <img class="avatar-large" src="images/kees.jpg" alt="">
+    <% if @user.profile_picture? %>
+      <%= cl_image_tag @user.profile_picture.path, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
+    <% else %>
+      <%= cl_image_tag 'sample', width: 100, height: 100, crop: :fill, class: "avatar-large" %>
+    <% end %>
     <h1><%= @user.first_name %> <%= @user.last_name %></h1>
   </div>
 
