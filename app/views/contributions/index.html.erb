@@ -1,7 +1,7 @@
-<h1>Contributions#index</h1>
+<h1>Contributions</h1>
 <p>Find me in app/views/contributions/index.html.erb</p>
 
 <% @contributions.each do |contribution| %>
-  <p><%= contribution.project.title %></p>
+  <p><%= contribution.title %></p>
   <p><%= contribution.comment %></p>
 <% end %>

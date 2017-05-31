@@ -1,6 +1,6 @@
 class ContributionsController < ApplicationController
   def index
-    @contributions = Contribution.where(project_id = params[:project_id])
+    @contributions = Project.find(params[:project_id]).contributions
   end
 
   def create
@@ -11,4 +11,5 @@ class ContributionsController < ApplicationController
 
   def destroy
   end
+
 end
