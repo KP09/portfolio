@@ -38,6 +38,9 @@
         <h3>Contributions feed</h3>
       </div>
       <div class="card-content">
+        <% if @user.contributions.count == 0 then  %>
+          <p>No submissions have been made by this user. Please come back soon.</p>
+        <% else %>
         <% @user.contributions.each do |contribution| %>
           <div class="contribution-container">
             <div class="contribution-thumbnail" style="background-image: url(<%= cl_image_path ('sample') %>)"></div>
@@ -51,6 +54,7 @@
             <% end %>
             </div>
           </div>
+        <% end %>
         <% end %>
       </div>
     </div>

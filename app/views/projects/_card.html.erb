@@ -1,7 +1,7 @@
 <%= link_to(project) do %>
   <div class="card_border">
     <div class="cover-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
-           url('<%= project.user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @project.user.cover_photo.path) %>')">
+           url('<%= project.user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path project.user.cover_photo.path) %>')">
     </div>
     <div class="card">
       <div class="creator-avitar">
@@ -19,10 +19,7 @@
       <div class="project_information">
         <div class="title">
           <h1><%= project.title %></h1>
-          <% full_name = "#{project.user.first_name} #{project.user.last_name}"%>
-          <p><%= full_name %></p>
         </div>
-        <br>
         <hr width="30%">
         <div class="brief">
           <% if project.brief.length > 100 then %>
