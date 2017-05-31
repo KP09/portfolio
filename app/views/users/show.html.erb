@@ -1,5 +1,5 @@
 <div class="container" id="banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
-           url('<%= cl_image_path ('banner_2_ieaj1g')%>')">
+           url('<%= @user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @user.cover_photo.path) %>')">
   <div class="profile-picture">
     <% if @user.profile_picture? %>
       <%= cl_image_tag @user.profile_picture.path, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
