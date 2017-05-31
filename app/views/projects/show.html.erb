@@ -58,9 +58,16 @@
 	  			</div>
 				</div>
 			  <div class="text-center">
-				  <% if @current_user.participations.pluck(:project_id).include?(@project.id) %>
+			  	<% if @current_user.contributed_to?(@project) %>
+			  		<div><%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+					  	  <%= f.input :file %>
+					  	  <%= f.input :file_cache, as: :hidden %>
+					  	  <%= f.submit "Update contribution to project" %>
+					  	<% end %>
+					  </div>	
+				  <% elsif @current_user.participated_to?(@project) %>
 				  	<div>
-					  	<%= simple_form_for([@current_user.participations.find_by(project_id: @project.id), @contribution]) do |f| %>
+					  	<%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
 					  	  <%= f.input :file %>
 					  	  <%= f.input :file_cache, as: :hidden %>
 					  	  <%= f.submit "Contribute to project" %>
