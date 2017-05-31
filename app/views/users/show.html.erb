@@ -48,7 +48,7 @@
               <p><%= contribution.comment %></p>
             </div>
             <div class="contribution-buttons">
-            <% if contribution.file %>
+            <% if contribution.file? %>
               <%= link_to "View", cl_image_path(contribution.file), class: "btn btn-primary" %>
             <% end %>
             </div>
