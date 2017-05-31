@@ -25,7 +25,7 @@ class ContributionsController < ApplicationController
   private
 
 	def contribution_params
-    params.require(:contribution).permit(:file)
+    params.require(:contribution).permit(:file, :comment)
   end
 
 end
