@@ -48,7 +48,8 @@
 				      <% else %>
 				      <div class="right_color_divide">
 				        <div class="pill">
-				          <p><%= @project.max_joins %></p>
+                  <% joins_remaining = (@project.max_joins) - (@project.participations.count) %>
+                  <p><%= joins_remaining %></p>
 				        </div>
 				        <div class="pill">
 				          <p><%= @project.category %></p>
