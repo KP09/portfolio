@@ -60,14 +60,16 @@
 			  <div class="text-center">
 			  	<% if @current_user.contributed_to?(@project) %>
 			  		<div><%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+                <%= f.input :comment %>
 					  	  <%= f.input :file %>
 					  	  <%= f.input :file_cache, as: :hidden %>
 					  	  <%= f.submit "Update contribution to project", class: "margin btn btn-primary" %>
 					  	<% end %>
-					  </div>	
+					  </div>
 				  <% elsif @current_user.participated_to?(@project) %>
 				  	<div>
 					  	<%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+                <%= f.input :comment %>
 					  	  <%= f.input :file %>
 					  	  <%= f.input :file_cache, as: :hidden %>
 					  	  <%= f.submit "Contribute to project", class: "margin btn btn-primary" %>
@@ -81,9 +83,9 @@
 			<!-- Add ability for user to make a contribution -->
 			 <% if @current_user.participations.pluck(:project_id).include?(@project.id)  %>
 			<% end %>
-				  
+
 			<div>
-				
+
 			</div>
 		</div>
 
