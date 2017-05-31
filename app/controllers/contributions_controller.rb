@@ -4,6 +4,15 @@ class ContributionsController < ApplicationController
   end
 
   def create
+  	@contribution = Contribution.new(contribution_params)
+
+  	@contribution.participation.user = current_user
+  	if @contribution.save
+  	  redirect_to root_path
+  	else
+  	  render :new
+  	end
+
   end
 
   def update
@@ -11,4 +20,7 @@ class ContributionsController < ApplicationController
 
   def destroy
   end
+
+  private
+
 end
