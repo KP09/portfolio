@@ -1,7 +1,31 @@
-<h1>Contributions#index</h1>
-<p>Find me in app/views/contributions/index.html.erb</p>
+<div class="container">
+  <h1>Contributions</h1>
 
-<% @contributions.each do |contribution| %>
-  <p><%= contribution.project.title %></p>
-  <p><%= contribution.comment %></p>
-<% end %>
+  <div class="row">
+  <% @contributions.each do |contribution| %>
+
+    <div class="col-xs-12">
+      <div class="contribution-list-item">
+        <div class="about-contributer">
+          <div>
+            <% if contribution.user.profile_picture? %>
+              <%= cl_image_tag contribution.user.profile_picture.path, width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
+            <% else %>
+              <%= cl_image_tag 'sample', width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
+            <% end %>
+          </div>
+          <div>
+            <p><%= contribution.user.first_name %> <%= contribution.user.last_name %></p>
+          </div>
+        </div>
+        <div>
+          <p><%= contribution.comment %></p>
+        </div>
+        <div>
+          <%= link_to "View", projects_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
