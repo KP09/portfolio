@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @current_user = current_user
-    @user_signed_in = user_signed_in?
+    @contribution = Contribution.new
   end
 
   def new
