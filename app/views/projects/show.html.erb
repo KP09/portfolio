@@ -5,11 +5,11 @@
 		<div class="col-lg-3">
 			<div class="content-box shadow text-center margin">
 				<div class="user-information details">
-					<!-- AVATAR IMAGE OF USER -->
-					<div class="avatar">
-					<!-- <img src="project.user.photo" alt="user" class="avatar"> NEED TO PUT CLOUDINARY IN PLACE FIRST -->
-					</div>
-					<!-- USERS NAME AND BIO ABOUT THEMSELVES -->
+					<% if @project.user.profile_picture? %>
+					      <%= cl_image_tag @project.user.profile_picture.path, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
+					    <% else %>
+					      <%= cl_image_tag 'sample', width: 100, height: 100, crop: :fill, class: "avatar-large" %>
+					    <% end %>
 					<p class="header"> Project Creator </p>
 					<p><%= @project.user.first_name %> <%= @project.user.last_name %></p>
 					<hr width="30%">
@@ -76,7 +76,8 @@
 		     <!-- <div class="avatar small"> INJECT ERB HERE</div> -->
 		     <% @project.participations.each do |participation| %>
 		          <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
-		          <img src="participation.user.profile_photo" alt="">
+              <%= cl_image_tag participation.user.profile_picture.path, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
+		          <!-- <img src="participation.user.profile_picture" alt=""> -->
 		          <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
 		          <% end %>
       </div>
