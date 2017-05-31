@@ -2,7 +2,18 @@
   <div class="text-center">
     <h1>Build Your Portfolio.</h1>
     <h2>Contribute to real projects by real companies</h2>
+    <br>
+
+  <div class="search">
+    <%= form_tag projects_path, method: :get do %>
+      <%= text_field_tag :term, nil, placeholder: "Search projects by name or category" %>
+      <button type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    <% end %>
+    </div>
   </div>
+
 </div>
 
 <%= render "about" %>
