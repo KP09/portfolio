@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: [:linkedin]
 
   # Model associations
   has_many :projects
@@ -17,6 +18,40 @@ class User < ApplicationRecord
   # Attachinary associations
   has_attachment :profile_picture
   has_attachment :cover_photo
+
+  def self.find_for_linkedin_oauth(auth)
+    user_params = {}
+    user_params[:provider] = auth[:provider]
+    user_params[:uid] = auth[:uid]
+    user_params[:email] = auth[:info][:email]
+    user_params[:first_name] = auth[:info][:first_name]
+    user_params[:last_name] = auth[:info][:last_name]
+    user_params[:linkedin_picture_url] = auth[:info][:image]
+    user_params[:token] = auth[:credentials][:token]
+    user_params[:token_expiry] = Time.at(auth[:credentials][:expires_at])
+
+    user = User.find_by(provider: auth.provider, uid: auth.uid)
+    user ||= User.find_by(email: auth.info.email) # User did a regular sign up in the past.
+    if user
+      user.update(user_params)
+    else
+      user = User.new(user_params)
+      user.password = Devise.friendly_token[0,20]  # Fake password for validation
+      user.save
+    end
+
+    return user
+  end
+
+  def get_picture
+    if profile_picture?
+      return profile_picture.path
+    elsif linkedin_picture_url
+      return linkedin_picture_url
+    else
+      return 'sample'
+    end
+  end
 
   # Finds specific participation instance if there is one for that user on that project.
   def participation(project)
