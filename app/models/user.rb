@@ -72,4 +72,8 @@ class User < ApplicationRecord
   def contributed_to?(project)
   	!contribution(project).nil?
   end
+
+  def full_name
+    full_name = "#{self.first_name} #{self.last_name}"
+  end
 end

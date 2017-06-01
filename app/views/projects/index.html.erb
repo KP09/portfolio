@@ -1,14 +1,21 @@
 <div class="container">
   <br>
-  <h1>All Projects</h1>
-  <hr>
+  <% if @projects.count == Project.all.count then %>
+    <h3>All Projects</h3>
+  <% else %>
+    <h3>Search results for <u><%= params[:term] %></u></h3>
+  <% end %>
 
-  <div class="row">
-    <% @projects.each do |project| %>
-      <div class="col-xs-12 col-sm-6 col-lg-4">
-        <%= render "card", project: project %>
-      </div>
-    <% end %>
+    <% if @projects.count == 0 then %>
+      <p class="text-left">Sorry there are no results to be shown!</p>
+    <% else %>
+      <div class="row">
+      <% @projects.each do |project| %>
+        <div class="col-xs-12 col-sm-6 col-lg-4">
+          <%= render "card", project: project %>
+        </div>
+      <% end %>
+    <% end  %>
   </div>
 </div>
 

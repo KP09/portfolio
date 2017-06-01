@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Contributions</h1>
+  <h1>Contributions for <%= @project.title %> project</h1>
 
   <div class="row">
   <% @contributions.each do |contribution| %>
@@ -7,7 +7,7 @@
     <div class="col-xs-12">
       <div class="contribution-list-item">
         <div class="about-contributer">
-          <div>
+          <div class="column-left">
             <% if contribution.user.profile_picture? %>
               <%= cl_image_tag contribution.user.profile_picture.path, width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
             <% else %>
@@ -18,11 +18,15 @@
             <p><%= contribution.user.first_name %> <%= contribution.user.last_name %></p>
           </div>
         </div>
-        <div>
-          <p><%= contribution.comment %></p>
+        <div class="column-center">
+          <div>
+            <p><%= contribution.comment %></p>
+          </div>
         </div>
-        <div>
-          <%= link_to "View", projects_path, class: "btn btn-primary" %>
+        <div class="column-right">
+          <div>
+            <%= link_to "View", projects_path, class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     </div>

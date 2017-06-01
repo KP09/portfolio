@@ -1,6 +1,7 @@
 class ContributionsController < ApplicationController
   def index
-    @contributions = Project.find(params[:project_id]).contributions
+    @project = Project.find(params[:project_id])
+    @contributions = Project.find(@project.id).contributions
   end
 
   def create
@@ -8,11 +9,10 @@ class ContributionsController < ApplicationController
   	@participation = Participation.find(params[:participation_id])
     @contribution.participation = @participation
   	if @contribution.save
-  	  redirect_to root_path
+  	  redirect_to project_path(@participation.project)
   	else
   	  render :new
   	end
-
   end
 
   def update
@@ -25,7 +25,7 @@ class ContributionsController < ApplicationController
   private
 
 	def contribution_params
-    params.require(:contribution).permit(:file)
+    params.require(:contribution).permit(:file, :comment)
   end
 
 end

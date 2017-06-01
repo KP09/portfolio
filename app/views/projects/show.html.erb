@@ -48,7 +48,8 @@
 				      <% else %>
 				      <div class="right_color_divide">
 				        <div class="pill">
-				          <p><%= @project.max_joins %></p>
+                  <% joins_remaining = (@project.max_joins) - (@project.participations.count) %>
+                  <p><%= joins_remaining %></p>
 				        </div>
 				        <div class="pill">
 				          <p><%= @project.category %></p>
@@ -60,14 +61,16 @@
 			  <div class="text-center">
 			  	<% if @current_user.contributed_to?(@project) %>
 			  		<div><%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+                <%= f.input :comment %>
 					  	  <%= f.input :file %>
 					  	  <%= f.input :file_cache, as: :hidden %>
 					  	  <%= f.submit "Update contribution to project", class: "margin btn btn-primary" %>
 					  	<% end %>
-					  </div>	
+					  </div>
 				  <% elsif @current_user.participated_to?(@project) %>
 				  	<div>
 					  	<%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+                <%= f.input :comment %>
 					  	  <%= f.input :file %>
 					  	  <%= f.input :file_cache, as: :hidden %>
 					  	  <%= f.submit "Contribute to project", class: "margin btn btn-primary" %>
@@ -81,9 +84,9 @@
 			<!-- Add ability for user to make a contribution -->
 			 <% if @current_user.participations.pluck(:project_id).include?(@project.id)  %>
 			<% end %>
-				  
+
 			<div>
-				
+
 			</div>
 		</div>
 
@@ -96,15 +99,15 @@
 		     <!-- <div class="avatar small"> INJECT ERB HERE</div> -->
 		      <% @project.participations.each do |participation| %>
 		          <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
-          <div class="flex-contributers">
-            <div class="left">
+          <div class="flex-left">
+            <div>
               <% if participation.user.profile_picture? %>
                 <%= cl_image_tag participation.user.profile_picture.path, width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
               <% else %>
                 <%= cl_image_tag 'sample', width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
               <% end %>
             </div>
-            <div class="right">
+            <div>
   		        <!-- <img src="participation.user.profile_picture" alt=""> -->
   		        <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
             </div>
