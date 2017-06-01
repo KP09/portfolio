@@ -20,19 +20,21 @@
           <% if @project.user == @current_user %>
               <!-- // <a href="/projects" class="btn-primary" onclick="return confirm('Are you sure?')">Delete project</a> -->
               <%= link_to "Delete project", "", onclick: "return confirm ('Are you sure?')" %>
+              <br>
+              <%= link_to "Edit project",  edit_project_path(@project) %>
             <% end %>
         </div>
       </div>
     </div>
     <div class="col-xs-12 col-lg-8 main-body-background">
-      <div class="body-padding">
+      <div class="body-padding margin-left">
         <div class="row">
           <div class="col-lg-8">
             <div class="main-body-section">
               <div class="task-title">
                 <p>Project: <%= @project.title %></p>
               </div>
-              <div class="brief">
+              <div class="brief-show-page">
                <p><%= @project.brief %></p>
               </div>
             </div>
