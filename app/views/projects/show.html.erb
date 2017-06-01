@@ -96,7 +96,7 @@
                    <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
                  </div>
                  <div class="far-right">
-                   <% if @current_user.contributed_to?(@project) %>
+                   <% if participation.user.contributed_to?(@project) %>
                       <div class="contributed-tick text-center">
                         <div class="contribution-check">
                           <i class="fa fa-check"></i>
