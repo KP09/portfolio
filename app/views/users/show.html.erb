@@ -1,65 +1,70 @@
-<div class="flex-around" id="banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
-           url('<%= @user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @user.cover_photo.path) %>')">
-  <div class="profile-header">
-    <% if @user.profile_picture? %>
-      <%= cl_image_tag @user.profile_picture.path, width: 30, height: 30, class: "avatar" %>
-    <% else %>
-      <%= cl_image_tag 'sample', width: 50, height: 50, crop: :fill, class: "avatar" %>
-    <% end %>
-    <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-    <p id="bio"><i class="fa fa-user-o"></i> <%= @user.bio %></p>
-    <p><i class="fa fa-map-marker"></i> London, UK</p>
-  </div>
-</div>
-
 <div id="content">
   <div class="container">
-    <div class="row">
-      <!-- Contributions -->
-      <div class="col-xs-12 col-md-8">
-        <h2>Past contributions</h2>
 
-        <% @user.contributions.each do |contribution| %>
-          <div id="contributions-container">
-
-              <div class="contribution">
-                <div class="contribution-header flex-between">
-                  <%= cl_image_tag 'sample', width: 30, height: 30, crop: :fill, class: "avatar" %>
-                  <div class="project-title">
-                    <h3>
-                      <%= link_to contribution.project.title, project_path(contribution.project), class: "contribution-header-link" %>
-                      for
-                      <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "contribution-header-link" %>
-                    </h3>
-                  </div>
-                </div>
-                <hr>
-                <div class="contribution-content flex-between">
-                  <%= link_to cl_image_path(contribution.file), class: "contribution-body-link" do %>
-                    <p><%= contribution.comment %></p>
-                  <% end %>
-                </div>
-              </div>
-
-          </div>
-        <% end %>
+    <div id="cover" class="flex-around" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
+               url('<%= @user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @user.cover_photo.path) %>')">
+      <div class="avatar-large" id="profile-pic" style="background-image: url('<%= @user.profile_picture? ? (cl_image_path @user.profile_picture.path) : (cl_image_path 'sample')%>')">
       </div>
-      <!-- Participations -->
-      <div class="col-xs-12 col-md-4">
-        <% if @user.participations.count == 0 %>
-          <h2><%= @user.first_name %> has no active projects</h2>
-        <% else %>
-          <h2>Currently working on
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="profile-header">
+          <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+          <p id="bio"><i class="fa fa-user-o"></i> <%= @user.bio %></p>
+          <p><i class="fa fa-map-marker"></i> London, UK</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <% unless @user.participations.count == 0 %>
+          <h2 class="text-center">Currently working on
             <%= @user.participations.count %>
             <%= @user.participations.count == 1 ? "project" : "projects" %>
             </h2>
-          <% @user.participations.each do |participation| %>
-          <!-- <div class="row"> -->
-            <div>
-              <%= render "projects/card", project: participation.project %>
+          <div class="responsive">
+            <% @user.participations.each do |participation| %>
+              <div>
+                <%= render "projects/card", project: participation.project %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Contributions -->
+      <div class="col-xs-12">
+        <% unless @user.contributions.count == 0 %>
+          <h2>Past contributions</h2>
+
+          <% @user.contributions.each do |contribution| %>
+            <div id="contributions-container">
+
+                <div class="contribution">
+                  <div class="contribution-header flex-between">
+                    <%= cl_image_tag 'sample', width: 30, height: 30, crop: :fill, class: "avatar" %>
+                    <div class="project-title">
+                      <h3>
+                        <%= link_to contribution.project.title, project_path(contribution.project), class: "contribution-header-link" %>
+                        for
+                        <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "contribution-header-link" %>
+                      </h3>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="contribution-content flex-between">
+                    <%= link_to cl_image_path(contribution.file), class: "contribution-body-link" do %>
+                      <p><%= contribution.comment %></p>
+                    <% end %>
+                  </div>
+                </div>
+
             </div>
           <% end %>
-          <!-- </div> -->
         <% end %>
       </div>
     </div>
