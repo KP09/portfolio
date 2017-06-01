@@ -26,16 +26,17 @@
                   <%= cl_image_tag 'sample', width: 30, height: 30, crop: :fill, class: "avatar" %>
                   <div class="project-title">
                     <h3>
-                      <%= link_to contribution.project.title, project_path(contribution.project), class: "link" %>
+                      <%= link_to contribution.project.title, project_path(contribution.project), class: "contribution-header-link" %>
                       for
-                      <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "link" %>
+                      <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "contribution-header-link" %>
                     </h3>
                   </div>
                 </div>
                 <hr>
                 <div class="contribution-content flex-between">
-                  <p class="contribution-comment"><%= contribution.comment %></p>
-                  <%= link_to "Open", cl_image_path(contribution.file), class: "btn btn-info" %>
+                  <%= link_to cl_image_path(contribution.file), class: "contribution-body-link" do %>
+                    <p><%= contribution.comment %></p>
+                  <% end %>
                 </div>
               </div>
 
@@ -44,14 +45,21 @@
       </div>
       <!-- Participations -->
       <div class="col-xs-12 col-md-4">
-        <h2>Currently working on</h2>
-        <% @user.participations.each do |participation| %>
-        <!-- <div class="row"> -->
-          <div>
-            <%= render "projects/card", project: participation.project %>
-          </div>
-        <!-- </div> -->
-      <% end %>
+        <% if @user.participations.count == 0 %>
+          <h2><%= @user.first_name %> has no active projects</h2>
+        <% else %>
+          <h2>Currently working on
+            <%= @user.participations.count %>
+            <%= @user.participations.count == 1 ? "project" : "projects" %>
+            </h2>
+          <% @user.participations.each do |participation| %>
+          <!-- <div class="row"> -->
+            <div>
+              <%= render "projects/card", project: participation.project %>
+            </div>
+          <% end %>
+          <!-- </div> -->
+        <% end %>
       </div>
     </div>
   </div>
