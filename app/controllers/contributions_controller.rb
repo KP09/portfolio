@@ -7,11 +7,13 @@ class ContributionsController < ApplicationController
   def create
   	@contribution = Contribution.new(contribution_params)
   	@participation = Participation.find(params[:participation_id])
+    @current_user = current_user
+    @project = @participation.project
     @contribution.participation = @participation
   	if @contribution.save
   	  redirect_to project_path(@participation.project)
   	else
-  	  render :new
+  	  render 'projects/show'
   	end
   end
 
