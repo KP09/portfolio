@@ -44,6 +44,7 @@
   hr {
     border-color: $brand-color;
     text-decoration: none;
+    margin: 20px auto;
   }
   a {
     text-decoration: none;
@@ -86,7 +87,8 @@
 }
 
 .brief {
-  height: 30px;
+  padding: 0px !important ;
+  height: 20px;
   width: 100%;
   p {
     font-size: 12px;
