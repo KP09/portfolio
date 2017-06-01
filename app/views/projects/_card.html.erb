@@ -22,11 +22,7 @@
         </div>
         <hr width="30%">
         <div class="brief">
-          <% if project.brief.length > 100 then %>
-            <p><%= project.brief[0...100] %>...</p>
-          <% else %>
-            <p><%= project.brief %></p>
-          <% end %>
+          <p><%= project.user.first_name %> <%= project.user.last_name %></p>
         </div>
       </div>
     </div>
