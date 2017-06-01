@@ -33,9 +33,9 @@
         <div class="dropdown">
           <span class="navbar-username">Hi <%= current_user.first_name %></span>
           <% if current_user.profile_picture? %>
-            <%= cl_image_tag current_user.profile_picture.path, crop: :fill, height: 30, width: 30, class: "avatar dropdown-toggle", id: "navbar-menu", "data-toggle" => "dropdown" %>
+            <%= cl_image_tag current_user.profile_picture.path, crop: :fill, height: 50, width: 50, class: "avatar-small dropdown-toggle", id: "navbar-menu", "data-toggle" => "dropdown" %>
           <% else %>
-            <%= cl_image_tag 'sample', crop: :fill, height: 30, width: 30, class: "avatar dropdown-toggle", id: "navbar-menu", "data-toggle" => "dropdown" %>
+            <%= cl_image_tag 'sample', crop: :fill, height: 50, width: 50, class: "avatar-small dropdown-toggle", id: "navbar-menu", "data-toggle" => "dropdown" %>
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-dropdown-menu">
             <li>

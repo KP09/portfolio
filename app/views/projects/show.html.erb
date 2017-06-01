@@ -1,11 +1,123 @@
-<div class="row">
-  <div class="col-xs-4">
-    <div class="side-bar">
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 col-xs-12 padding-none">
+      <div class="side-bar">
+        <div class="side-cover-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
+             url('<%= @project.user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @project.user.cover_photo.path) %>')">
+          <div class="side-bar-profile-image">
+            <% if @project.user.profile_picture? %>
+              <%= cl_image_tag @project.user.profile_picture.path, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
+            <% else %>
+              <%= cl_image_tag 'sample', width: 100, height: 100, crop: :fill, class: "avatar-large" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="side-bar-name text-center">
+          <h1><%= @project.user.first_name %> <%= @project.user.last_name %></h1>
+          <div class="side-bar-about">
+            <p><%= @project.user.bio %></p>
+          </div>
+          <% if @project.user == @current_user %>
+              <!-- // <a href="/projects" class="btn-primary" onclick="return confirm('Are you sure?')">Delete project</a> -->
+              <%= link_to "Delete project", "", onclick: "return confirm ('Are you sure?')" %>
+            <% end %>
+        </div>
+      </div>
     </div>
-    This is the section for the post creator information
-  </div>
-  <div class="col-xs-8">
-    This is the section for the main content
+    <div class="col-xs-12 col-lg-8 main-body-background">
+      <div class="body-padding">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="main-body-section">
+              <div class="task-title">
+                <p>Project: <%= @project.title %></p>
+              </div>
+              <div class="brief">
+               <p><%= @project.brief %></p>
+              </div>
+            </div>
+          <div class="main-body-section">
+            <div class="task-title">
+              <p>Whats Next?
+                <% if @current_user.contributed_to?(@project) %>
+                  Update Contribution
+                <% elsif @current_user.participated_to?(@project) %>
+                  Upload Contribution
+                <% else %>
+                  Join the Project Below
+                <% end %>
+              </p>
+            </div>
+              <div class="upload-contribution-form">
+                <% if @current_user.contributed_to?(@project) %>
+                  <div><%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+                      <%= f.input :comment %>
+                      <%= f.input :file %>
+                      <%= f.input :file_cache, as: :hidden %>
+                      <%= f.submit "Update contribution to project", class: "btn btn-primary" %>
+                    <% end %>
+                  </div>
+                <% elsif @current_user.participated_to?(@project) %>
+                  <div>
+                    <p>So you have been hard at work completing this project. The time has come to upload your contribution. Woohoo. Please use the form below to get your work sent to the project owner! Remember all contributions can be accessed on your profile!</p>
+                    <%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+                      <%= f.input :comment, class: "form-control" %>
+                      <%= f.input :file %>
+                      <%= f.input :file_cache, as: :hidden %>
+                      <%= f.submit "Contribute to project", class: "btn btn-primary" %>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <%= link_to "Join project", project_participations_path(@project), class: "btn btn-primary", method: :post %>
+                <% end %>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="main-body-section">
+              <div class="task-title">
+                <div>
+                  <p>Joins:</p>
+                </div>
+              </div>
+              <div class="joins">
+               <% @project.participations.each do |participation| %>
+                   <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
+              <div class="flex-contributers">
+                <div class="left">
+                  <% if participation.user.profile_picture? %>
+                    <%= cl_image_tag participation.user.profile_picture.path, width: 50, height: 50, crop: :fill, class: "avatar-small" %>
+                  <% else %>
+                    <%= cl_image_tag 'sample', width: 50, height: 50, crop: :fill, class: "avatar-small" %>
+                   <% end %>
+                 </div>
+                 <div class="right">
+                   <!-- <img src="participation.user.profile_picture" alt=""> -->
+                   <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
+                 </div>
+                 <div class="far-right">
+                   <% if @current_user.contributed_to?(@project) %>
+                      <div class="contributed-tick text-center">
+                        <div class="contribution-check">
+                          <i class="fa fa-check"></i>
+                        </div>
+                      </div>
+                    <% end %>
+                 </div>
+               </div>
+               <br>
+               <% end %>
+              </div>
+            </div>
+
+            <% if @current_user.participated_to?(@project) %>
+            <div class="un-join">
+              <%= link_to "Leave project", participation_path(current_user.participations.where(project_id: @project.id).first), method: :delete %>
+             </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

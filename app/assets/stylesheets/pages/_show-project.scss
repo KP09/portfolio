@@ -1,0 +1,118 @@
+.side-bar {
+  background: white;
+  height: 90vh;
+}
+
+.flex-contributers {
+  display:flex;
+  align-items: center;
+  p {
+    font-size: 12px;
+  }
+}
+
+.right {
+    margin-left: 10px;
+  }
+
+.side-cover-image {
+  display: flex;
+  height: 200px;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-bar-profile-image {
+    margin-top: 185px;
+}
+
+.side-bar-name {
+  margin-top: 70px;
+  h1 {
+    font-size: 20px;
+    font-weight: 200;
+  }
+}
+
+.side-bar-about {
+  background: $box-background-color;
+  padding: 30px;
+  border-radius: 5px;
+  margin: 20px auto;
+  width: 70%;
+}
+
+.joiners-main-body {
+  background: white;
+  border-radius: 10px;
+  padding: 50px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.main-body-section {
+  background: white;
+  border-radius: 10px;
+  padding: 0px;
+  width: 100%;
+  margin: 20px 0;
+  min-height: 200px;
+}
+
+.task-title {
+  display: flex;
+  align-items: center;
+  background: $charcoal;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  color: white;
+  p {
+    margin: 0px;
+  }
+}
+
+.main-body-background {
+  background: $box-background-color;
+  min-height: 100vh;
+}
+
+.joins {
+  padding: 20px;
+}
+
+.brief {
+  padding: 20px;
+  p {
+    font-size: 14px;
+  }
+}
+
+.padding {
+  margin: 20px;
+}
+
+textarea {
+    resize: none;
+}
+
+.upload-contribution-form {
+  padding: 20px;
+}
+
+.un-join {
+  background: $charcoal;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.contributed-tick {
+  color: $brand-color;
+  width: 100px;
+}
