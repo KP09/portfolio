@@ -12,6 +12,9 @@ class ParticipationsController < ApplicationController
   end
 
   def destroy
+    Participation.find(params[:id]).destroy
+    redirect_to projects_path
+
   end
 
   private

@@ -1,0 +1,122 @@
+<!-- PROJECT CREATOR INFORMATION -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="content-box shadow text-center margin">
+        <div class="user-information details">
+          <% if @project.user.profile_picture? %>
+                <%= cl_image_tag @project.user.profile_picture.path, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
+              <% else %>
+                <%= cl_image_tag 'sample', width: 100, height: 100, crop: :fill, class: "avatar-large" %>
+              <% end %>
+          <p class="header"> Project Creator </p>
+          <p><%= @project.user.first_name %> <%= @project.user.last_name %></p>
+          <hr width="30%">
+          <p class="header"> Bio </p>
+          <p><%= @project.user.bio %></p>
+        </div>
+        <div class="delete">
+          <% if @project.user == @current_user %>
+            <!-- // <a href="/projects" class="btn-primary" onclick="return confirm('Are you sure?')">Delete project</a> -->
+            <%= link_to "Delete project", "", onclick: "return confirm ('Are you sure?')" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOW THE PROJECT -->
+
+    <div class="col-lg-6">
+      <div class="margin">
+        <div class="center-box shadow">
+          <h1 class="title text-center"><%= @project.title %> </h1>
+          <hr width="30%">
+          <p class="details text-center"><%= @project.brief %></p>
+        </div>
+
+        <div class="card_color_divide shadow">
+          <div class="details text-center">
+            <% days_left = (@project.end_date.to_date - DateTime.now.to_date).to_i %>
+            <p><%= days_left %> days left</p>
+          </div>
+            <div>
+              <% if @project.max_joins == nil %>
+                <div class="pill">
+                  <p><%= project.category %></p>
+                </div>
+              <% else %>
+              <div class="right_color_divide">
+                <div class="pill">
+                  <% joins_remaining = (@project.max_joins) - (@project.participations.count) %>
+                  <p><%= joins_remaining %></p>
+                </div>
+                <div class="pill">
+                  <p><%= @project.category %></p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <% if @current_user.contributed_to?(@project) %>
+            <div><%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+                <%= f.input :comment %>
+                <%= f.input :file %>
+                <%= f.input :file_cache, as: :hidden %>
+                <%= f.submit "Update contribution to project", class: "margin btn btn-primary" %>
+              <% end %>
+            </div>
+          <% elsif @current_user.participated_to?(@project) %>
+            <div>
+              <%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
+                <%= f.input :comment %>
+                <%= f.input :file %>
+                <%= f.input :file_cache, as: :hidden %>
+                <%= f.submit "Contribute to project", class: "margin btn btn-primary" %>
+              <% end %>
+            </div>
+          <% else %>
+            <%= link_to "Join project", project_participations_path(@project), class: "margin btn btn-primary", method: :post %>
+          <% end %>
+        </div>
+      </div>
+      <!-- Add ability for user to make a contribution -->
+       <% if @current_user.participations.pluck(:project_id).include?(@project.id)  %>
+      <% end %>
+
+      <div>
+
+      </div>
+    </div>
+
+
+    <!-- PROJECT PARTICIPATERS -->
+
+    <div class="col-lg-3">
+      <div class="content-box shadow text-center margin">
+        <h1 class="header"> Project joiners </h1>
+         <!-- <div class="avatar small"> INJECT ERB HERE</div> -->
+          <% @project.participations.each do |participation| %>
+              <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
+          <div class="flex-contributers">
+            <div class="left">
+              <% if participation.user.profile_picture? %>
+                <%= cl_image_tag participation.user.profile_picture.path, width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
+              <% else %>
+                <%= cl_image_tag 'sample', width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
+              <% end %>
+            </div>
+            <div class="right">
+              <!-- <img src="participation.user.profile_picture" alt=""> -->
+              <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
+            </div>
+          </div>
+          <br>
+          <% end %>
+      </div>
+    </div>
+
+
+  </div>
+</div>

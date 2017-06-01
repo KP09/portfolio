@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   resources :projects do
-    resources :participations, only: [:create, :destroy]
+    resources :participations, only: [:create]
     resources :contributions, only: [:index]
   end
 
-  resources :participations, only: [] do
+  resources :participations do
     resources :contributions, only: [:create, :update, :destroy]
   end
 end

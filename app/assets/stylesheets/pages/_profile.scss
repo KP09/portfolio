@@ -41,6 +41,7 @@ hr {
 
 #content {
   background-color: $box-background-color;
+  min-height: 70vh;
 }
 
 .profile-header {
@@ -73,10 +74,20 @@ hr {
   margin: 0 0 10px 0;
 }
 
-.link {
+.contribution-header-link {
   font-weight: bold;
-  color: $charcoal;
+  color: $charcoal !important;
+  opacity: 1;
   &:hover {
-  color: $brand-color;
+  opacity: 0.8;
+  }
+}
+
+.contribution-body-link {
+  font-weight: normal;
+  color: $charcoal !important;
+  opacity: 1;
+  &:hover {
+  opacity: 0.8;
   }
 }
