@@ -28,9 +28,20 @@
 	box-shadow: 0 0 8px rgba(204,204,204,0.55);
 }
 
-// Marigins
-
+// Margins
 .margin {
 	margin: 20px 0px;
 }
 
+// Most standard flexbox
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
