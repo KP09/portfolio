@@ -6,8 +6,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:linkedin]
 
   # Model associations
-  has_many :projects
-  has_many :participations
+  has_many :projects, dependent: :destroy
+  has_many :participations, dependent: :destroy
   has_many :contributions, through: :participations
 
   # User validations

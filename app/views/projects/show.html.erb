@@ -5,11 +5,7 @@
         <div class="side-cover-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
              url('<%= @project.user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @project.user.cover_photo.path) %>')">
           <div class="side-bar-profile-image">
-            <% if @project.user.profile_picture? %>
-              <%= cl_image_tag @project.user.profile_picture.path, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
-            <% else %>
-              <%= cl_image_tag 'sample', width: 100, height: 100, crop: :fill, class: "avatar-large" %>
-            <% end %>
+              <%= cl_image_tag @project.user.get_picture, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
           </div>
         </div>
         <div class="side-bar-name text-center">
@@ -58,7 +54,9 @@
                       <%= f.input :comment %>
                       <%= f.input :file %>
                       <%= f.input :file_cache, as: :hidden %>
-                      <%= f.submit "Update contribution to project", class: "btn btn-primary" %>
+											<div class="text-center">
+                      	<%= f.submit "Update contribution to project", class: "btn btn-primary" %>
+                      </div>	
                     <% end %>
                   </div>
                 <% elsif @current_user.participated_to?(@project) %>
@@ -93,11 +91,7 @@
                    <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
               <div class="flex-contributers">
                 <div class="left">
-                  <% if participation.user.profile_picture? %>
-                    <%= cl_image_tag participation.user.profile_picture.path, width: 50, height: 50, crop: :fill, class: "avatar-small" %>
-                  <% else %>
-                    <%= cl_image_tag 'sample', width: 50, height: 50, crop: :fill, class: "avatar-small" %>
-                   <% end %>
+                    <%= cl_image_tag participation.user.get_picture, width: 50, height: 50, crop: :fill, class: "avatar-small" %>
                  </div>
                  <div class="right">
                    <!-- <img src="participation.user.profile_picture" alt=""> -->
