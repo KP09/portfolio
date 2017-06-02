@@ -4,14 +4,9 @@
     <h2>Contribute to real projects by real companies</h2>
     <br>
 
-  <div class="search">
-    <%= form_tag projects_path, method: :get do %>
-      <%= text_field_tag :term, nil, placeholder: "Search projects by name or category" %>
-      <button type="submit">
-        <i class="fa fa-search"></i>
-      </button>
+    <%= link_to projects_path do %>
+      <div class="btn btn-primary">Start browsing projects</div>
     <% end %>
-    </div>
   </div>
 
 </div>
