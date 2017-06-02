@@ -38,14 +38,14 @@
 .side-bar-about {
   background: $box-background-color;
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 2px;
   margin: 20px auto;
   width: 70%;
 }
 
 .main-body-section {
   background: white;
-  border-radius: 10px;
+  border-radius: 2px;
   padding: 0px;
   width: 100%;
   margin: 20px 0;
@@ -55,15 +55,20 @@
 .task-title {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background: $charcoal;
   width: 100%;
   padding: 10px;
-  border-radius: 5px 5px 0 0;
+  border-radius: 2px 2px 0 0;
   color: white;
   p {
     margin: 0px;
     font-size: 14px;
   }
+}
+
+.shift-right {
+  display: flex;
 }
 
 .main-body-background {
@@ -100,7 +105,7 @@ textarea {
 
 .un-join {
   background: $light-grey;
-  border-radius: 5px;
+  border-radius: 2px;
   text-align: center;
   padding: 10px;
   a {
@@ -112,4 +117,8 @@ textarea {
 .contributed-tick {
   color: $brand-color;
   width: 100px;
+}
+
+.project_remaining_days {
+  margin-right: 10px;
 }
