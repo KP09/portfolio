@@ -15,7 +15,6 @@ class ParticipationsController < ApplicationController
     @project = Participation.find(params[:id]).project
     Participation.find(params[:id]).destroy
     redirect_to project_path(@project)
-
   end
 
   private
