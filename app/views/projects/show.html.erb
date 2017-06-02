@@ -201,14 +201,16 @@
                   </div>
                 </div>
                <br>
-               <% end %>
+              <% end %>
+              <% end %>
               </div>
-            </div>
+
             <% if @current_user.participated_to?(@project) %>
-            <div class="text-center">
-              <%= link_to "Leave project", participation_path(current_user.participations.where(project_id: @project.id).first), method: :delete, class: "btn btn-default" %>
-             </div>
+              <div class="text-center">
+                <%= link_to "Leave project", participation_path(current_user.participations.where(project_id: @project.id).first), method: :delete, class: "btn btn-default" %>
+              </div>
             <% end %>
+            </div>
           </div>
         </div>
       </div>
