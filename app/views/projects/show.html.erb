@@ -5,11 +5,7 @@
         <div class="side-cover-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
              url('<%= @project.user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @project.user.cover_photo.path) %>')">
           <div class="side-bar-profile-image">
-            <% if @project.user.profile_picture? %>
-              <%= cl_image_tag @project.user.profile_picture.path, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
-            <% else %>
-              <%= cl_image_tag 'sample', width: 100, height: 100, crop: :fill, class: "avatar-large" %>
-            <% end %>
+              <%= cl_image_tag @project.user.get_picture, width: 100, height: 100, crop: :fill, class: "avatar-large" %>
           </div>
         </div>
         <div class="side-bar-name text-center">
@@ -87,7 +83,9 @@
                       <%= f.input :comment %>
                       <%= f.input :file %>
                       <%= f.input :file_cache, as: :hidden %>
-                      <%= f.submit "Update contribution to project", class: "btn btn-primary" %>
+											<div class="text-center">
+                      	<%= f.submit "Update contribution to project", class: "btn btn-primary" %>
+                      </div>	
                     <% end %>
                   </div>
                 <% elsif @current_user.participated_to?(@project) %>
@@ -139,39 +137,32 @@
             <% end %>
           </div>
 
-        </div>
-          <div class="col-lg-4">
-            <% if days_left > 0 %>
-              <div class="main-body-box">
-                <div class="task-title">
-                  <div>
-                    <p>There are currently <%= @project.participations.count %> people working on this project :</p>
-                  </div>
+        <div class="col-lg-4">
+          <% if days_left > 0 then %>
+            <div class="main-body-box">
+              <div class="task-title">
+                <div>
+                  <p>There are currently <%= @project.participations.count %> people working on this project :</p>
                 </div>
-                <div class="joins">
-                  <% @project.participations.each do |participation| %>
-                     <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
-                  <div class="flex-contributers">
-                    <div class="left">
-                      <% if participation.user.profile_picture? %>
-                        <%= cl_image_tag participation.user.profile_picture.path, width: 50, height: 50, crop: :fill, class: "avatar-small" %>
-                      <% else %>
-                        <%= cl_image_tag 'sample', width: 50, height: 50, crop: :fill, class: "avatar-small" %>
-                       <% end %>
-                    </div>
-                    <div class="right">
-                       <!-- <img src="participation.user.profile_picture" alt=""> -->
-                       <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
-                    </div>
-                    <div class="far-right">
-                       <% if participation.user.contributed_to?(@project) %>
-                          <div class="contributed-tick text-center">
-                            <div class="contribution-check">
-                              <i class="fa fa-check"></i>
-                            </div>
-                          </div>
-                        <% end %>
-                    </div>
+              </div>
+              <div class="joins">
+                <% @project.participations.each do |participation| %>
+                   <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
+              <div class="flex-contributers">
+                <div class="left">
+                    <%= cl_image_tag participation.user.get_picture, width: 50, height: 50, crop: :fill, class: "avatar-small" %>
+                 </div>
+                 <div class="right">
+                   <!-- <img src="participation.user.profile_picture" alt=""> -->
+                   <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
+                 </div>
+                 <div class="far-right">
+                   <% if participation.user.contributed_to?(@project) %>
+                      <div class="contributed-tick text-center">
+                        <div class="contribution-check">
+                          <i class="fa fa-check"></i>
+                        </div>
+                      <% end %>
                   </div>
                  <br>
                  <% end %>
