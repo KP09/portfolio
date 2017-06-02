@@ -41,9 +41,10 @@ hr {
 #cover {
   background-position: center;
   background-size: cover;
-  height: 250px;
+  height: 300px;
   h1 {
   color: white;
+  margin: 10px 0 10px 0;
   }
 }
 
@@ -54,6 +55,10 @@ hr {
   background-size: cover;
   border: 2px solid $light-grey;
   margin: 0 auto;
+}
+
+.contribution-owner-photo {
+  height: 50px;
 }
 
 .profile-header {

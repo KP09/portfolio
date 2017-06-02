@@ -1,25 +1,20 @@
 <div id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-10 col-md-offset-1">
-
-        <div id="cover" class="flex-around" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
-                   url('<%= @user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @user.cover_photo.path) %>')">
-          <div>
-            <div id="profile-pic" style="background-image: url('<%= @user.profile_picture? ? (cl_image_path @user.profile_picture.path) : (cl_image_path 'sample')%>')">
-            </div>
-            <h1><%= @user.full_name %></h1>
-          </div>
-        </div>
+  <div id="cover" class="flex-around" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)),
+             url('<%= @user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @user.cover_photo.path) %>')">
+    <div>
+      <div id="profile-pic" style="background-image: url('<%= @user.profile_picture? ? (cl_image_path @user.profile_picture.path) : (cl_image_path 'sample')%>')">
       </div>
+      <h1><%= @user.full_name %></h1>
     </div>
+  </div>
 
+  <div class="container">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2">
         <div class="profile-header">
           <h2>About <%= @user.first_name %></h2>
-          <p id="bio"><i class="fa fa-user-o"></i> <%= @user.bio %></p>
           <p><i class="fa fa-map-marker"></i> London, UK</p>
+          <p id="bio"><i class="fa fa-user-o"></i> <%= @user.bio %></p>
         </div>
       </div>
 
@@ -46,13 +41,14 @@
       <!-- Contributions -->
       <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
         <% unless @user.contributions.count == 0 %>
-          <h2>Past contributions</h2>
+          <h2><%= @user.contributions.count %> contributions made</h2>
 
           <% @user.contributions.each do |contribution| %>
             <div id="contributions-container">
                 <div class="contribution">
                   <div class="contribution-header flex-between">
-                    <%= cl_image_tag 'sample', width: 30, height: 30, crop: :fill, class: "avatar" %>
+                    <div class="contribution-owner-photo" class="avatar-small" style="background-image: url('<%= contribution.project.user.profile_picture? ? (cl_image_path contribution.project.userprofile_picture.path) : (cl_image_path 'sample')%>')">
+                    </div>
                     <div class="project-title">
                       <h3>
                         <%= link_to contribution.project.title, project_path(contribution.project), class: "contribution-header-link" %>
@@ -60,11 +56,15 @@
                         <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "contribution-header-link" %>
                       </h3>
                     </div>
+                    <div class="contribution-date">
+                      <span><%= contribution.updated_at.strftime('%B %Y') %></span>
+                    </div>
                   </div>
                   <hr>
                   <div class="contribution-content flex-between">
+                    <p><%= contribution.comment %></p>
                     <%= link_to cl_image_path(contribution.file), class: "contribution-body-link" do %>
-                      <p><%= contribution.comment %></p>
+                      <div class="btn btn-default">Open</div>
                     <% end %>
                   </div>
                 </div>
