@@ -5,11 +5,11 @@ class Contribution < ApplicationRecord
   validates :comment, presence: true
   validates :file, presence: true
 
-  def toggle_star
-    if self.starred
-      self.update(starred: false)
+  def toggle_star(contribution)
+    if contribution.starred == true
+      contribution.starred == false
     else
-      self.update(starred: true)
+      contribution.starred == true
     end
   end
 end
