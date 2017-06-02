@@ -19,13 +19,6 @@ hr {
   margin: 10px 0;
 }
 
-#banner {
-  background-position: center;
-  background-size: cover;
-  width: 100vw;
-  height: 250px;
-}
-
 #title {
   text-align: left;
   color: white;
@@ -40,14 +33,31 @@ hr {
 }
 
 #content {
-  background-color: $box-background-color;
+  margin: 10px 0 0 0;
+  background-color: white;
   min-height: 70vh;
 }
 
-.profile-header {
-  text-align: center;
-  top: 50px;
+#cover {
+  background-position: center;
+  background-size: cover;
+  height: 250px;
+  h1 {
   color: white;
+  }
+}
+
+#profile-pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-size: cover;
+  border: 2px solid $light-grey;
+  margin: 0 auto;
+}
+
+.profile-header {
+  top: 50px;
 }
 
 .project-title {

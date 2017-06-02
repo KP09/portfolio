@@ -22,6 +22,7 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'faker'
+gem "jquery-slick-rails"
 
 # THIS WAS AN IMPORTANT THING IN ORDER TO GET A QUALITY VERSION OF THIS GEM BY GOING TO GIT AND GETTING MASTER BRANCH
 gem 'omniauth-linkedin-oauth2', git: 'https://github.com/decioferreira/omniauth-linkedin-oauth2.git', branch: :master
