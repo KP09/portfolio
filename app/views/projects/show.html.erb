@@ -19,9 +19,11 @@
           </div>
           <% if @project.user == @current_user %>
               <!-- // <a href="/projects" class="btn-primary" onclick="return confirm('Are you sure?')">Delete project</a> -->
-              <%= link_to "Delete project", "", onclick: "return confirm ('Are you sure?')" %>
+              <%= link_to "Delete project", project_path(@project), method: :delete, onclick: "return confirm ('Are you sure?')", class: "btn btn-default" %>
               <br>
-              <%= link_to "Edit project",  edit_project_path(@project) %>
+              <div >
+              	<%= link_to "Edit project", edit_project_path(@project), class: "btn btn-default" %>
+              </div>
             <% end %>
         </div>
       </div>
@@ -95,11 +97,15 @@
                       <%= f.input :comment, class: "form-control" %>
                       <%= f.input :file %>
                       <%= f.input :file_cache, as: :hidden %>
-                      <%= f.submit "Contribute to project", class: "btn btn-primary" %>
+                      <div class="text-center">
+                      	<%= f.submit "Contribute to project", class: "btn btn-primary" %>
+                      </div>
                     <% end %>
                   </div>
                 <% else %>
-                  <%= link_to "Join project", project_participations_path(@project), class: "btn btn-primary", method: :post %>
+                	<div class="text-center">
+                  	<%= link_to "Join project", project_participations_path(@project), class: "btn btn-primary", method: :post %>
+                  </div>
                 <% end %>
               </div>
           <% else %>
@@ -199,10 +205,14 @@
               </div>
             </div>
             <% if @current_user.participated_to?(@project) %>
+
             <div class="un-join">
               <%= link_to "Leave project", participation_path(current_user.participations.where(project_id: @project.id).first), method: :delete %>
               <% end %>
             </div>
+            <div class="text-center">
+              <%= link_to "Leave project", participation_path(current_user.participations.where(project_id: @project.id).first), method: :delete, class: "btn btn-default" %>
+             </div>
             <% end %>
           </div>
         </div>

@@ -1,0 +1,9 @@
+.btn-default {
+    color: $charcoal !important;
+    border-color: $charcoal !important;
+    &:hover {
+			color: $brand-color !important;
+    	border-color: $brand-color !important;
+    	background-color: white;
+    }
+}
