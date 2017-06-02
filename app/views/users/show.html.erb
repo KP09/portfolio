@@ -1,20 +1,16 @@
 <div id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-10 col-md-offset-1">
-
-        <div id="cover" class="flex-around" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
-                   url('<%= @user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @user.cover_photo.path) %>')">
-          <div>
-            <div id="profile-pic" style="background-image: url('<%= cl_image_path @user.get_picture %>')">
-            </div>
-            <h1><%= @user.full_name %></h1>
-            <% unless @user.number_of_starred_contributions == 0 %>
-              <div id="profile-star" style="background-image: url('<%= cl_image_path 'star_frmlvi' %>')">
-                <p><%= @user.number_of_starred_contributions %></p>
-              </div>
-            <% end %>
-        </div>
+  <div id="cover" class="flex-around" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
+             url('<%= @user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @user.cover_photo.path) %>')">
+    <div>
+      <div id="profile-pic" style="background-image: url('<%= cl_image_path @user.get_picture %>')">
+      </div>
+      <div class="flex-between">
+        <h1><%= @user.full_name %></h1>
+        <% unless @user.number_of_starred_contributions == 0 %>
+          <div id="profile-star" style="background-image: url('<%= cl_image_path 'star_frmlvi' %>')">
+            <p><%= @user.number_of_starred_contributions %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
