@@ -33,6 +33,7 @@ hr {
 }
 
 #content {
+  margin: 10px 0 0 0;
   background-color: white;
   min-height: 70vh;
 }
@@ -41,20 +42,22 @@ hr {
   background-position: center;
   background-size: cover;
   height: 250px;
-  position: relative;
+  h1 {
+  color: white;
+  }
 }
 
 #profile-pic {
-  position: absolute;
   height: 100px;
+  width: 100px;
+  border-radius: 50%;
   background-size: cover;
   border: 2px solid $light-grey;
+  margin: 0 auto;
 }
 
 .profile-header {
-  text-align: center;
   top: 50px;
-  color: $gray-base;
 }
 
 .project-title {
