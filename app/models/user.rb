@@ -81,4 +81,8 @@ class User < ApplicationRecord
   def number_of_active_participations
     participations.reject{ |p| p.project.nil? }.count
   end
+
+  def number_of_starred_contributions
+    contributions.select{ |c| c.starred == true }.count
+  end
 end

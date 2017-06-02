@@ -41,9 +41,10 @@ hr {
 #cover {
   background-position: center;
   background-size: cover;
-  height: 250px;
+  height: 300px;
   h1 {
   color: white;
+  margin: 10px 0 10px 0;
   }
 }
 
@@ -54,6 +55,32 @@ hr {
   background-size: cover;
   border: 2px solid $light-grey;
   margin: 0 auto;
+}
+
+#profile-star {
+  height: 50px;
+  width: 50px;
+  background-size: contain;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  p {
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 16px;
+  }
+}
+
+.contribution-star {
+  height: 20px;
+  width: 20px;
+  background-size: contain;
+  margin: 0 5px 0 0;
+}
+
+.contribution-owner-photo {
+  height: 50px;
 }
 
 .profile-header {
