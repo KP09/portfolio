@@ -48,7 +48,6 @@
 
           <% @user.contributions.each do |contribution| %>
             <div id="contributions-container">
-
                 <div class="contribution">
                   <div class="contribution-header flex-between">
                     <%= cl_image_tag 'sample', width: 30, height: 30, crop: :fill, class: "avatar" %>
@@ -67,7 +66,6 @@
                     <% end %>
                   </div>
                 </div>
-
             </div>
           <% end %>
         <% end %>
