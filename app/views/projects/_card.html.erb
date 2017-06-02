@@ -5,11 +5,7 @@
     </div>
     <div class="card">
       <div class="creator-avitar">
-        <% if project.user.profile_picture? %>
-          <%= cl_image_tag project.user.profile_picture.path, width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
-        <% else %>
-          <%= cl_image_tag 'sample', width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
-        <% end %>
+          <%= cl_image_tag project.user.get_picture, width: 70, height: 70, crop: :fill, class: "avatar-medium" %>
       </div>
 
       <div class="search-icon">
