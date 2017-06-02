@@ -92,7 +92,7 @@
                   </div>
                 <% elsif @current_user.participated_to?(@project) %>
                   <div>
-                    <p>So you have been hard at work completing this project. The time has come to upload your contribution. Woohoo. Please use the form below to get your work sent to the project owner! Remember all contributions can be accessed on your profile!</p>
+                    <p>So you have been hard at work completing this project. The time has come to upload your contribution. Wohoo. Please use the form below to get your work sent to the project owner! Remember all contributions can be accessed on your profile!</p>
                     <%= simple_form_for([@current_user.participation(@project), @contribution]) do |f| %>
                       <%= f.input :comment, class: "form-control" %>
                       <%= f.input :file %>
