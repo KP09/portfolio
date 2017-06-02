@@ -6,7 +6,7 @@
         <div id="cover" class="flex-around" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
                    url('<%= @user.cover_photo.nil? ? (cl_image_path ('homepage_dcj50q')) : (cl_image_path @user.cover_photo.path) %>')">
           <div>
-            <div id="profile-pic" style="background-image: url('<%= @user.profile_picture? ? (cl_image_path @user.profile_picture.path) : (cl_image_path 'sample')%>')">
+            <div id="profile-pic" style="background-image: url('<%= cl_image_path @user.get_picture %>')">
             </div>
             <h1><%= @user.full_name %></h1>
           </div>
@@ -26,14 +26,16 @@
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
         <% unless @user.participations.count == 0 %>
           <h2>Currently working on
-            <%= @user.participations.count %>
-            <%= @user.participations.count == 1 ? "project" : "projects" %>
+            <%= @user.number_of_active_participations %>
+            <%= @user.number_of_active_participations == 1 ? "project" : "projects" %>
             </h2>
           <div class="responsive">
             <% @user.participations.each do |participation| %>
-              <div>
-                <%= render "projects/card", project: participation.project %>
-              </div>
+              <% if participation.project %>
+                <div>
+                  <%= render "projects/card", project: participation.project %>
+                </div>
+              <% end %>
             <% end %>
           </div>
         <% end %>
