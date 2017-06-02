@@ -26,14 +26,16 @@
       <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
         <% unless @user.participations.count == 0 %>
           <h2>Currently working on
-            <%= @user.participations.count %>
-            <%= @user.participations.count == 1 ? "project" : "projects" %>
+            <%= @user.number_of_active_participations %>
+            <%= @user.number_of_active_participations == 1 ? "project" : "projects" %>
             </h2>
           <div class="responsive">
             <% @user.participations.each do |participation| %>
-              <div>
-                <%= render "projects/card", project: participation.project %>
-              </div>
+              <% if participation.project %>
+                <div>
+                  <%= render "projects/card", project: participation.project %>
+                </div>
+              <% end %>
             <% end %>
           </div>
         <% end %>
@@ -48,7 +50,6 @@
 
           <% @user.contributions.each do |contribution| %>
             <div id="contributions-container">
-
                 <div class="contribution">
                   <div class="contribution-header flex-between">
                     <%= cl_image_tag 'sample', width: 30, height: 30, crop: :fill, class: "avatar" %>
@@ -67,7 +68,6 @@
                     <% end %>
                   </div>
                 </div>
-
             </div>
           <% end %>
         <% end %>

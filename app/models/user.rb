@@ -73,7 +73,12 @@ class User < ApplicationRecord
   	!contribution(project).nil?
   end
 
+  # Returns full name of user
   def full_name
     full_name = "#{self.first_name} #{self.last_name}"
+  end
+
+  def number_of_active_participations
+    participations.reject{ |p| p.project.nil? }.count
   end
 end
