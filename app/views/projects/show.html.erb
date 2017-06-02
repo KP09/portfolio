@@ -119,9 +119,9 @@
                       <%= cl_image_tag 'sample', width: 30, height: 30, crop: :fill, class: "avatar-xs" %>
                       <div class="project-title">
                         <h3>
-                          <%= link_to contribution.project.title, project_path(contribution.project), class: "contribution-header-link" %>
+                          <%= link_to contribution.participation.project.title, project_path(contribution.participation.project), class: "contribution-header-link" %>
                           for
-                          <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "contribution-header-link" %>
+                          <%= link_to contribution.participation.user.full_name, user_path(contribution.participation.project.user), class: "contribution-header-link" %>
                         </h3>
                       </div>
                     </div>

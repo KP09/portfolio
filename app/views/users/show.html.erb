@@ -54,13 +54,13 @@
             <div id="contributions-container">
                 <div class="contribution">
                   <div class="contribution-header flex-between">
-                    <div class="contribution-owner-photo" class="avatar-small" style="background-image: url('<%= contribution.project.user.profile_picture? ? (cl_image_path contribution.project.userprofile_picture.path) : (cl_image_path 'sample')%>')">
+                    <div class="contribution-owner-photo" class="avatar-small" style="background-image: url('<%= contribution.participation.project.user.profile_picture? ? (cl_image_path contribution.participation.project.user.profile_picture.path) : (cl_image_path 'sample')%>')">
                     </div>
                     <div class="project-title">
                       <h3>
-                        <%= link_to contribution.project.title, project_path(contribution.project), class: "contribution-header-link" %>
+                        <%= link_to contribution.participation.project.title, project_path(contribution.participation.project), class: "contribution-header-link" %>
                         for
-                        <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "contribution-header-link" %>
+                        <%= link_to contribution.participation.project.user.full_name, user_path(contribution.participation.project.user), class: "contribution-header-link" %>
                       </h3>
                     </div>
                     <% if contribution.starred %>
