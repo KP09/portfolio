@@ -127,15 +127,10 @@
                     </div>
                     <hr>
                     <div class="contribution-content flex-between">
-                      <%= link_to cl_image_path(contribution.file), class: "contribution-body-link" do %>
-                        <p><%= contribution.comment %></p>
-                      <% end %>
+                      <%= link_to "View Submission", cl_image_path(contribution.file), class: "btn btn-default" %>
+                      <%= link_to "Star", contribution.toggle_star(contribution), class: "btn btn-default" %>
                     </div>
-                    <div class="contribution-content flex-between">
-                      <%= link_to cl_image_path(contribution.file), class: "contribution-body-link" do %>
-                        <p><%= contribution.comment %></p>
-                      <% end %>
-                    </div>
+
                   </div>
                 <% end %>
               <% end %>
