@@ -17,7 +17,7 @@
           <div class="side-bar-about">
             <p><%= @project.user.bio %></p>
           </div>
-          <% if @project.user == @current_user %>
+          <% if @project.user == current_user %>
               <!-- // <a href="/projects" class="btn-primary" onclick="return confirm('Are you sure?')">Delete project</a> -->
               <%= link_to "Delete project", project_path(@project), method: :delete, onclick: "return confirm ('Are you sure?')", class: "btn btn-default" %>
               <br>
@@ -28,11 +28,15 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-8 project-title">
+      <div class="container-fluid">
+        <h1 class="text-center"><%= @project.title %></h1>
+      </div>
+    </div>
     <div class="col-xs-12 col-lg-8 main-body-background">
       <div class="body-padding margin-left">
         <div class="row">
           <div class="col-lg-8">
-            <h1><%= @project.title %></h1>
             <div class="main-body-box">
               <div class="task-title">
                 <div><p>Brief</p></div>
@@ -45,7 +49,6 @@
                         <p>Closed</p>
                       <% end %>
                     </div>
-
                     <% if @project.max_joins == nil then  %>
                       <div class="pill">
                         <p><%= @project.category %></p>
@@ -59,17 +62,14 @@
                         <p><%= @project.category %></p>
                       </div>
                     <% end %>
-
-                </div>
+                  </div>
               </div>
               <div class="brief-show-page">
-               <p><%= @project.brief %></p>
+                <p><%= @project.brief %></p>
               </div>
             </div>
-
-
         <div class="main-body-box">
-          <% if days_left > 0 then %>
+          <% if days_left > 0 && @project.user != current_user %>
             <div class="task-title">
               <p>Whats Next?
                 <% if @current_user.contributed_to?(@project) %>
@@ -112,72 +112,76 @@
             <div class="task-title">
               <p>All Contributions</p>
             </div>
-              <% @project.contributions.each do | contribution | %>
-                <div id="contributions-container-show" style="padding: 15px;">
-                  <div class="contribution-header flex-between">
-                    <%= cl_image_tag 'sample', width: 30, height: 30, crop: :fill, class: "avatar-xs" %>
-                    <div class="project-title">
-                      <h3>
-                        <%= link_to contribution.project.title, project_path(contribution.project), class: "contribution-header-link" %>
-                        for
-                        <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "contribution-header-link" %>
-                      </h3>
+              <% if @project.contributions.count == 0 then %>
+                <p class="text-center padded">There are no contributions to view</p>
+              <% else %>
+                <% @project.contributions.each do | contribution | %>
+                  <div id="contributions-container-show" style="padding: 15px;">
+                    <div class="contribution-header flex-between">
+                      <%= cl_image_tag 'sample', width: 30, height: 30, crop: :fill, class: "avatar-xs" %>
+                      <div class="project-title">
+                        <h3>
+                          <%= link_to contribution.project.title, project_path(contribution.project), class: "contribution-header-link" %>
+                          for
+                          <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "contribution-header-link" %>
+                        </h3>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="contribution-content flex-between">
+                      <%= link_to cl_image_path(contribution.file), class: "contribution-body-link" do %>
+                        <p><%= contribution.comment %></p>
+                      <% end %>
                     </div>
                   </div>
-                  <hr>
-                  <div class="contribution-content flex-between">
-                    <%= link_to cl_image_path(contribution.file), class: "contribution-body-link" do %>
-                      <p><%= contribution.comment %></p>
-                    <% end %>
-                  </div>
-                </div>
+                <% end %>
               <% end %>
             <% end %>
-        </div>
-      </div>
+          </div>
 
-        <div class="col-lg-4">
-          <% if days_left > 0 then %>
-            <div class="main-body-box">
-              <div class="task-title">
-                <div>
-                  <p>There are currently <%= @project.participations.count %> people working on this project :</p>
+        </div>
+          <div class="col-lg-4">
+            <% if days_left > 0 %>
+              <div class="main-body-box">
+                <div class="task-title">
+                  <div>
+                    <p>There are currently <%= @project.participations.count %> people working on this project :</p>
+                  </div>
                 </div>
-              </div>
-              <div class="joins">
-                <% @project.participations.each do |participation| %>
-                   <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
-                <div class="flex-contributers">
-                  <div class="left">
-                    <% if participation.user.profile_picture? %>
-                      <%= cl_image_tag participation.user.profile_picture.path, width: 50, height: 50, crop: :fill, class: "avatar-small" %>
-                    <% else %>
-                      <%= cl_image_tag 'sample', width: 50, height: 50, crop: :fill, class: "avatar-small" %>
-                     <% end %>
-                  </div>
-                  <div class="right">
-                     <!-- <img src="participation.user.profile_picture" alt=""> -->
-                     <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
-                  </div>
-                  <div class="far-right">
-                     <% if participation.user.contributed_to?(@project) %>
-                        <div class="contributed-tick text-center">
-                          <div class="contribution-check">
-                            <i class="fa fa-check"></i>
+                <div class="joins">
+                  <% @project.participations.each do |participation| %>
+                     <!-- ADD USER.PHOTO IN AVATAR > MAY WANT TO DO A FLEXBOX -->
+                  <div class="flex-contributers">
+                    <div class="left">
+                      <% if participation.user.profile_picture? %>
+                        <%= cl_image_tag participation.user.profile_picture.path, width: 50, height: 50, crop: :fill, class: "avatar-small" %>
+                      <% else %>
+                        <%= cl_image_tag 'sample', width: 50, height: 50, crop: :fill, class: "avatar-small" %>
+                       <% end %>
+                    </div>
+                    <div class="right">
+                       <!-- <img src="participation.user.profile_picture" alt=""> -->
+                       <p class="details"><%= participation.user.first_name %> <%= participation.user.last_name %></p>
+                    </div>
+                    <div class="far-right">
+                       <% if participation.user.contributed_to?(@project) %>
+                          <div class="contributed-tick text-center">
+                            <div class="contribution-check">
+                              <i class="fa fa-check"></i>
+                            </div>
                           </div>
-                        </div>
-                      <% end %>
+                        <% end %>
+                    </div>
                   </div>
+                 <br>
+                 <% end %>
                 </div>
-               <br>
-               <% end %>
               </div>
-            </div>
-          <% else %>
-            <div class="main-body-box">
-              <div class="task-title">
-                <div>
-                  <% if @project.contributions.count == 1 %>
+            <% else %>
+              <div class="main-body-box">
+                <div class="task-title">
+                  <div>
+                    <% if @project.contributions.count == 1 %>
                     <p>There was <%= @project.contributions.count %> contribution made to this project:</p>
                   <% else %>
                     <p>There were <%= @project.contributions.count %> contributions made to this project:</p>
@@ -202,14 +206,13 @@
                 </div>
                <br>
               <% end %>
-              <% end %>
-              </div>
+            <% end %>
 
-            <% if @current_user.participated_to?(@project) %>
-
-              <div class="text-center">
-                <%= link_to "Leave project", participation_path(current_user.participations.where(project_id: @project.id).first), method: :delete, class: "btn btn-default" %>
               </div>
+              <% if @current_user.participated_to?(@project) && days_left > 0 && @project.user != current_user %>
+                <div class="text-center">
+                  <%= link_to "Leave project", participation_path(current_user.participations.where(project_id: @project.id).first), method: :delete, class: "btn btn-default" %>
+                </div>
               <% end %>
             </div>
           </div>
