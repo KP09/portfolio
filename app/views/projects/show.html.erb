@@ -66,11 +66,15 @@
                       <%= f.input :comment, class: "form-control" %>
                       <%= f.input :file %>
                       <%= f.input :file_cache, as: :hidden %>
-                      <%= f.submit "Contribute to project", class: "btn btn-primary" %>
+                      <div class="text-center">
+                      	<%= f.submit "Contribute to project", class: "btn btn-primary " %>
+                      </div>
                     <% end %>
                   </div>
                 <% else %>
-                  <%= link_to "Join project", project_participations_path(@project), class: "btn btn-primary", method: :post %>
+                	<div class="text-center">
+                  	<%= link_to "Join project", project_participations_path(@project), class: "btn btn-primary", method: :post %>
+                  </div>
                 <% end %>
               </div>
             </div>
