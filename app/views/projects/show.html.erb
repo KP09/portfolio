@@ -9,7 +9,9 @@
           </div>
         </div>
         <div class="side-bar-name text-center">
-          <h1><%= @project.user.first_name %> <%= @project.user.last_name %></h1>
+          <%= link_to user_path(@project.user) do %>
+            <h1><%= @project.user.first_name %> <%= @project.user.last_name %></h1>
+          <% end %>
           <div class="side-bar-about">
             <p><%= @project.user.bio %></p>
           </div>
