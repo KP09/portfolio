@@ -4,7 +4,14 @@
     <div>
       <div id="profile-pic" style="background-image: url('<%= @user.profile_picture? ? (cl_image_path @user.profile_picture.path) : (cl_image_path 'sample')%>')">
       </div>
-      <h1><%= @user.full_name %></h1>
+      <div class="flex-between">
+        <h1><%= @user.full_name %></h1>
+        <% unless @user.number_of_starred_contributions == 0 %>
+          <div id="profile-star" style="background-image: url('<%= cl_image_path 'star_frmlvi' %>')">
+            <p><%= @user.number_of_starred_contributions %></p>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -56,6 +63,10 @@
                         <%= link_to contribution.project.user.full_name, user_path(contribution.project.user), class: "contribution-header-link" %>
                       </h3>
                     </div>
+                    <% if contribution.starred %>
+                      <div class="contribution-star" style="background-image: url('<%= cl_image_path 'star_frmlvi' %>')">
+                      </div>
+                    <% end %>
                     <div class="contribution-date">
                       <span><%= contribution.updated_at.strftime('%B %Y') %></span>
                     </div>
