@@ -10,12 +10,12 @@
       <p class="text-left">Sorry there are no results to be shown!</p>
     <% else %>
       <div class="row">
-      <% @projects.each do |project| %>
-        <div class="col-xs-12 col-sm-6 col-lg-4">
-          <%= render "card", project: project %>
-        </div>
-      <% end %>
+        <% @projects.each do |project| %>
+          <div class="col-xs-12 col-sm-6 col-lg-4">
+            <%= render "card", project: project %>
+          </div>
+        <% end %>
+      </div>
     <% end  %>
-  </div>
 </div>
 
